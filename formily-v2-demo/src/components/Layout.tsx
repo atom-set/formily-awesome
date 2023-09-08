@@ -5,16 +5,29 @@ export default function Layout() {
   const [pagePath, setPagePath] = useState(window.location.pathname);
   const testMenuItems = [
     {
-      title: '原生Form形式实现用户登陆注册',
+      title: '原生方式实现联动',
       href: '/normalForm',
     },
     {
-      title: 'antd-from形式实现用户登陆注册',
+      title: 'antd 方式实现联动',
       href: '/antForm',
     },
     {
-      title: 'formily-from形式实现用户登陆注册',
+      title: 'formily 方式实现联动',
       href: '/formilyForm',
+    },
+
+    {
+      title: '用户登陆注册: 受控组件方式，输入和错误信息都是非精确渲染',
+      href: '/userLogin/v1',
+    },
+    {
+      title: '用户登陆注册: 非受控组件方式，错误信息非精确渲染',
+      href: '/userLogin/v2',
+    },
+    {
+      title: '用户登陆注册: Mobx方式，错误信息非精确渲染',
+      href: '/userLogin/v3',
     },
   ];
 
