@@ -31,9 +31,11 @@ export default () => {
           const { sex, birthday } = getIdCardInfo(field.value);
           form.setFieldState("sex", (state: any) => {
             state.value = sex
+            form.clearErrors(state.path.entire);
           })
           form.setFieldState("birthday", (state: any) => {
             state.value = moment(birthday, "YYYY-MM-DD")
+            form.clearErrors(state.path.entire);
           })
         }
       })
