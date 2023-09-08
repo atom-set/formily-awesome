@@ -1,6 +1,6 @@
 import { Button, Checkbox, DatePicker, Form, Input, message, Radio, Select } from 'antd';
 import React from 'react';
-import { getIdCard } from '../../utils/index';
+import { getIdCardInfo } from '../../utils/index';
 import dayjs from 'dayjs';
 
 // 身份证正则
@@ -16,7 +16,7 @@ const App: React.FC = () => {
     const onValuesChange = (changedFields: any, allFields: any) => {
         console.log('onFieldsChange:', changedFields, allFields);
         if (changedFields.idCard && idCardReg.test(changedFields.idCard)) {
-            const { sex, birthday } = getIdCard(changedFields.idCard);
+            const { sex, birthday } = getIdCardInfo(changedFields.idCard);
             form.setFieldsValue({
                 "sex": sex,
                 "birthday": dayjs(birthday, "YYYY-MM-DD")

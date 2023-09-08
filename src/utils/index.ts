@@ -6,7 +6,7 @@ type cardType = {
     sex: string,
     birthday: string
 }
-const getIdCard = (IdCard: string): cardType => {
+const getIdCardInfo = (IdCard: string): cardType => {
     //获取性别
     let sex = (parseInt(IdCard.substring(16, 1)) % 2 === 1 ? '男' : '女');
 
@@ -20,5 +20,5 @@ const getIdCard = (IdCard: string): cardType => {
 }
 
 export {
-    getIdCard
+    getIdCardInfo
 }

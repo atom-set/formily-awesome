@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import React, { useRef } from 'react';
-import { getIdCard } from '../../utils/index';
+import { getIdCardInfo } from '../../utils/index';
 
 
 // 身份证正则
@@ -14,7 +14,7 @@ const MyForm = () => {
   // 联动-根据身份证号自动识别性别、出生日期
   const onChange = (e: any) => {
     if (idCardReg.test(e.target.value)) {
-      const { sex, birthday } = getIdCard(e.target.value);
+      const { sex, birthday } = getIdCardInfo(e.target.value);
       formRef.current.sex.value = sex;
       formRef.current.birthday.value = birthday;
     }
