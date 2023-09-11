@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { createForm, onFieldValidateSuccess, onFormSubmitSuccess } from '@formily/core'
+import { createForm, onFieldValidateSuccess, onFormSubmitFailed, onFormSubmitSuccess } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import {
   Form,
@@ -22,10 +22,11 @@ import { message } from 'antd';
 
 export default () => {
 
+  // 创建form实例
   const form = createForm({
     validateFirst: true,
     effects() {
-      // 监听身份证号
+      // 监听idCard变化 实现性别/出生日期的联动
       onFieldValidateSuccess('idCard', (field: any) => {
         if (field.value) {
           const { sex, birthday } = getIdCardInfo(field.value);
@@ -39,14 +40,19 @@ export default () => {
           })
         }
       })
+      // 提交失败
+      onFormSubmitFailed((field: any) => {
+        console.log("提交失败", field.errors)
+      })
       // 提交
       onFormSubmitSuccess((field: any) => {
+        console.log("提交失败", field.errors)
         message.success("提交成功")
       })
     }
   })
 
-
+  // 创建组件结构
   const SchemaField = createSchemaField({
     components: {
       FormItem,

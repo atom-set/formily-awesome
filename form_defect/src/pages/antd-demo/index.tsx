@@ -10,6 +10,7 @@ const phoneReg = /^1[3456789]\d{9}$/;
 
 const App: React.FC = () => {
 
+    // 表单实例
     const [form] = Form.useForm();
 
     // 联动-根据身份证号自动识别性别、出生日期

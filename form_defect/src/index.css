@@ -12,4 +12,5 @@ body {
 
 .msg_error{
   color: red;
+  padding-left: 10px;
 }

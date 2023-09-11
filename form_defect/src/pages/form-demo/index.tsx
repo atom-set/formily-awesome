@@ -9,8 +9,10 @@ const idCardReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 const phoneReg = /^1[3456789]\d{9}$/;
 const MyForm = () => {
 
+  // 表单数据状态
   const formRef: any = useRef(null);
 
+  // 表单校验信息
   const [nameMsg, setNameMsg] = useState<string>("");
   const [idCardMsg, setIdCardMsg] = useState<string>("");
   const [sexMsg, setSexMsg] = useState<string>("");
@@ -71,61 +73,57 @@ const MyForm = () => {
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
-      <label>
-        姓名:
+      <p>
+        姓名：
         <input type="text" name="name" onChange={() => checkForm("name")} />
         {
           nameMsg && <span className='msg_error'>{nameMsg}</span>
         }
-      </label>
-      <br />
-      <label>
-        身份证号:
+      </p>
+      <p>
+        身份证号：
         <input type="text" name="idCard" onChange={onChange} />
         {
           idCardMsg && <span className='msg_error'>{idCardMsg}</span>
         }
-      </label>
-      <br />
-      <label>
-        性别:
+      </p>
+      <p>
+        性别：
         <input type="radio" name="sex" value="男" onChange={() => checkForm("sex")} />男
         <input type="radio" name="sex" value="女" onChange={() => checkForm("sex")} />女
         {
           sexMsg && <span className='msg_error'>{sexMsg}</span>
         }
-      </label>
-      <br />
-      <label>
-        出生日期:
+      </p>
+      <p>
+        出生日期：
         <input type="text" name="birthday" onChange={() => checkForm("birthday")} />
         {
           birthdayMsg && <span className='msg_error'>{birthdayMsg}</span>
         }
-      </label>
-      <br />
-      <label>
-        联系电话:
+      </p>
+      <p>
+        联系电话：
         <input type="text" name="phone" onChange={() => checkForm("phone")} />
         {
           phoneMsg && <span className='msg_error'>{phoneMsg}</span>
         }
-      </label>
+      </p>
       {/* {
         Array.from({ length: 1000 }, (_, index) => {
           return <>
-            <label>
-              测试:
+            <p>
+              测试：
               <input type="text" name={index + ""} onChange={() => checkForm("phone")} />
               {
                 phoneMsg && <span className='msg_error'>{phoneMsg}</span>
               }
-            </label>
+            </p>
             <br />
           </>
         })
       } */}
-      <button type="submit">Submit</button>
+      <button type="submit">提交</button>
     </form>
   );
 };
