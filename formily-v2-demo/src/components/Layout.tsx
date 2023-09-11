@@ -4,6 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function Layout() {
   const [pagePath, setPagePath] = useState(window.location.pathname);
   const testMenuItems = [
+    // 联动
     {
       title: '原生方式实现联动',
       href: '/normalForm',
@@ -16,6 +17,7 @@ export default function Layout() {
       title: 'formily 方式实现联动',
       href: '/formilyForm',
     },
+    // 用户登陆
     {
       title: '用户登陆注册: 受控组件方式，输入和错误信息都是非精确渲染',
       href: '/userLogin/v1',
@@ -28,7 +30,7 @@ export default function Layout() {
       title: '用户登陆注册: Mobx方式，错误信息非精确渲染',
       href: '/userLogin/v3',
     },
-
+    // antd组件
     {
       title: 'antd最小组件集合',
       href: '/antd/v1',
