@@ -16,7 +16,6 @@ export default function Layout() {
       title: 'formily 方式实现联动',
       href: '/formilyForm',
     },
-
     {
       title: '用户登陆注册: 受控组件方式，输入和错误信息都是非精确渲染',
       href: '/userLogin/v1',
@@ -28,6 +27,11 @@ export default function Layout() {
     {
       title: '用户登陆注册: Mobx方式，错误信息非精确渲染',
       href: '/userLogin/v3',
+    },
+
+    {
+      title: 'antd最小组件集合',
+      href: '/antd/v1',
     },
   ];
 
