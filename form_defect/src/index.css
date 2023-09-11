@@ -9,3 +9,7 @@ body {
   justify-content: center;
   padding-top: 10%;
 }
+
+.msg_error{
+  color: red;
+}
