@@ -14,6 +14,9 @@ import UserLoginV2 from './pages/02.UserLogin/V2';
 import UserLoginV3 from './pages/02.UserLogin/V3';
 
 
+// antd源码系统
+import AntdV1 from './pages/20.Antd/V1';
+
 function App() {
   return (
     <div className="App">
@@ -32,6 +35,9 @@ function App() {
           <Route path="userLogin/v1" element={<UserLoginV1 />} />
           <Route path="userLogin/v2" element={<UserLoginV2 />} />
           <Route path="userLogin/v3" element={<UserLoginV3 />} />
+
+          {/* ant design 系列*/}
+          <Route path="antd/v1" element={<AntdV1 />} />
           </Route>
         </Routes>
       </BrowserRouter>
