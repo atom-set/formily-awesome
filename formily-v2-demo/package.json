@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.3",
-    "@formily/antd": "2.2.27",
-    "@formily/core": "2.2.27",
-    "@formily/react": "2.2.27",
+    "@formily/antd": "^2.2.29",
+    "@formily/core": "^2.2.29",
+    "@formily/react": "^2.2.29",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "13.0.0",
     "@testing-library/user-event": "13.2.1",

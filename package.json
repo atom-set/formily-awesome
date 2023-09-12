@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@formily/reactive": "^2.2.29"
+  }
+}

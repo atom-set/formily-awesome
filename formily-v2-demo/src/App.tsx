@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 import Layout from "./components/Layout";
 import Home from './pages/Home';
+import About from './pages/About';
 // 联动
 import NormalLinkage from './pages/01.FormLinkage/NormalForm/index';
 import AntLinkage from './pages/01.FormLinkage/AntForm';
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
+          <Route path="/demo" element={<About />} />
           {/* --- 原生方式实现联动 --- */}
           <Route path="normalLinkage" element={<NormalLinkage />} />
           {/* antd 方式实现联动 */}
