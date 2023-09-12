@@ -1,2 +1,6 @@
-# formily-awesome
-### formily-v2-demo: 案例代码库
+# form_defect（表单痛点demo）
+
+1.react实现用户信息登记功能
+2.复杂大表单的常见痛点
+3.输出通用表单领域的痛点
+

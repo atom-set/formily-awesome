@@ -10,6 +10,7 @@ const phoneReg = /^1[3456789]\d{9}$/;
 
 const App: React.FC = () => {
 
+    // 表单实例
     const [form] = Form.useForm();
 
     // 联动-根据身份证号自动识别性别、出生日期
@@ -49,7 +50,7 @@ const App: React.FC = () => {
             <Form.Item
                 label="姓名"
                 name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                rules={[{ required: true, message: '请输入你的姓名!' }]}
             >
                 <Input />
             </Form.Item>
@@ -57,7 +58,7 @@ const App: React.FC = () => {
             <Form.Item
                 label="身份证号"
                 name="idCard"
-                rules={[{ required: true, pattern: idCardReg, message: 'Please input your idCard!' }]}
+                rules={[{ required: true, pattern: idCardReg, message: '请输入你的身份证号!' }]}
             >
                 <Input />
             </Form.Item>
@@ -65,7 +66,7 @@ const App: React.FC = () => {
             <Form.Item
                 label="性别"
                 name="sex"
-                rules={[{ required: true, message: 'Please input your sex!' }]}
+                rules={[{ required: true, message: '请选择你的性别!' }]}
             >
                 <Radio.Group>
                     <Radio value="男"> 男 </Radio>
@@ -76,7 +77,7 @@ const App: React.FC = () => {
             <Form.Item
                 label="出生日期"
                 name="birthday"
-                rules={[{ required: true, message: 'Please input your birthday!' }]}
+                rules={[{ required: true, message: '请选择你的出生日期!' }]}
             >
                 <DatePicker />
             </Form.Item>
@@ -84,7 +85,7 @@ const App: React.FC = () => {
             <Form.Item
                 label="联系电话"
                 name="phone"
-                rules={[{ required: true, pattern: phoneReg, message: 'Please input your phone!' }]}
+                rules={[{ required: true, pattern: phoneReg, message: '请输入你的手机号!' }]}
             >
                 <Input />
             </Form.Item>
