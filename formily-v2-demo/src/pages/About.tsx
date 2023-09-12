@@ -1,6 +1,7 @@
+/* eslint-disable no-eval */
 import React from 'react'
-import { createForm } from '@formily/core'
-import { createSchemaField } from '@formily/react'
+import { Field, createForm, onFieldValueChange } from '@formily/core'
+import { Schema, createSchemaField } from '@formily/react'
 import {
   Form,
   FormItem,
@@ -19,10 +20,24 @@ import {
 } from '@formily/antd'
 import { Card } from 'antd'
 
+const trimEnd = (oldVal: string) => oldVal?.trimEnd()
+
+export const trimFun = (field: Field, ...rest: any[]) => {
+  const value = field?.value;
+  field.value = trimEnd(value)
+};
+
 const form = createForm({
   validateFirst: true,
+  effects() {
+    onFieldValueChange('username', (field) => {
+      form.setFieldState(`username`, (state) => {
+        console.log('state:', Object.keys(state), form)
+        state.value = trimEnd(state?.value)
+      });
+    })
+  }
 })
-
 
 const SchemaField = createSchemaField({
   components: {
@@ -41,10 +56,24 @@ const SchemaField = createSchemaField({
   scope: {
     fetchAddress: (field: { loading: boolean; dataSource: any }) => {
     },
+    trimFun,
   },
 })
 
+Schema.registerPatches(schema => {
+  // console.log('schema:', schema)
+  const formatFun = schema['x-format'];
+  if (typeof formatFun === 'function') {
+    // 这里做一些处理
+    const oldVal = schema['x-value'];
+    schema['x-value'] = formatFun(oldVal);
+  }
+  return schema;
+});
+
+
 const AboutPage = () => {
+
   return (
     <div
       style={{
@@ -68,6 +97,14 @@ const AboutPage = () => {
               required
               x-decorator="FormItem"
               x-component="Input"
+              x-value="121212     "
+              x-component-props={{
+                style: {
+                  background: 'red'
+                }
+              }}
+              x-format={trimEnd}
+            // x-reactions="{{trimFun}}"
             />
             <SchemaField.String
               name="password"
