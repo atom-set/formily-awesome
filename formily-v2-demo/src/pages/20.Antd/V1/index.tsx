@@ -1,3 +1,6 @@
+/**
+ * @description 构建antd最小组件集
+ */
 import React from 'react'
 import { FormItem, Space, NumberPicker } from '@formily/antd'
 import { createForm } from '@formily/core'

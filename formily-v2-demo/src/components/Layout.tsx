@@ -35,6 +35,10 @@ export default function Layout() {
       title: 'antd最小组件集合',
       href: '/antd/v1',
     },
+    {
+      title: 'antd最小组件集合间关系',
+      href: '/antd/v2',
+    },
   ];
 
   const handleClick = () => {

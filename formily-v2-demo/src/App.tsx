@@ -16,6 +16,7 @@ import UserLoginV3 from './pages/02.UserLogin/V3';
 
 // antd源码系统
 import AntdV1 from './pages/20.Antd/V1';
+import AntdV2 from './pages/20.Antd/V2';
 
 function App() {
   return (
@@ -23,22 +24,25 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />} >
-          <Route path="/" element={<Home />} />
-          <Route path="/demo" element={<About />} />
-          {/* --- 原生方式实现联动 --- */}
-          <Route path="normalLinkage" element={<NormalLinkage />} />
-          {/* antd 方式实现联动 */}
-          <Route path="antLinkage" element={<AntLinkage />} />
-          {/* formily 方式实现联动 */}
-          <Route path="formilyLinkage" element={<FormilyLinkage />} />
-          
-          {/* 用户登陆注册 */}
-          <Route path="userLogin/v1" element={<UserLoginV1 />} />
-          <Route path="userLogin/v2" element={<UserLoginV2 />} />
-          <Route path="userLogin/v3" element={<UserLoginV3 />} />
+            {/* <Route path="/" element={<Home />} />
+            <Route path="/demo" element={<About />} /> */}
+            <Route path="/debugger" element={<AntdV2 />} />
 
-          {/* ant design 系列*/}
-          <Route path="antd/v1" element={<AntdV1 />} />
+            {/* --- 原生方式实现联动 --- */}
+            {/* <Route path="normalLinkage" element={<NormalLinkage />} /> */}
+            {/* antd 方式实现联动 */}
+            {/* <Route path="antLinkage" element={<AntLinkage />} /> */}
+            {/* formily 方式实现联动 */}
+            {/* <Route path="formilyLinkage" element={<FormilyLinkage />} /> */}
+
+            {/* 用户登陆注册 */}
+            {/* <Route path="userLogin/v1" element={<UserLoginV1 />} />
+            <Route path="userLogin/v2" element={<UserLoginV2 />} />
+            <Route path="userLogin/v3" element={<UserLoginV3 />} /> */}
+
+            {/* ant design 系列*/}
+            {/* <Route path="antd/v1" element={<AntdV1 />} />
+            <Route path="antd/v2" element={<AntdV2 />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
