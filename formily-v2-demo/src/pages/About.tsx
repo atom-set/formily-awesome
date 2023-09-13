@@ -20,6 +20,8 @@ import {
 } from '@formily/antd'
 import { Card } from 'antd'
 
+const toArr = (val: any): any[] => (Array.isArray(val) ? val : val ? [val] : [])
+
 const trimEnd = (oldVal: string) => oldVal?.trimEnd()
 
 export const trimFun = (field: Field, ...rest: any[]) => {
@@ -32,8 +34,8 @@ const form = createForm({
   effects() {
     onFieldValueChange('username', (field) => {
       form.setFieldState(`username`, (state) => {
-        console.log('state:', Object.keys(state), form)
-        state.value = trimEnd(state?.value)
+        // console.log('state:', Object.keys(state), form)
+        // state.value = trimEnd(state?.value)
       });
     })
   }
@@ -61,19 +63,21 @@ const SchemaField = createSchemaField({
 })
 
 Schema.registerPatches(schema => {
-  // console.log('schema:', schema)
-  const formatFun = schema['x-format'];
-  if (typeof formatFun === 'function') {
-    // 这里做一些处理
-    const oldVal = schema['x-value'];
-    schema['x-value'] = formatFun(oldVal);
-  }
-  return schema;
+  const reactions = toArr(schema['x-reactions'])
+  reactions.push((field: Field) => {
+    const formatFun = schema['x-format'];
+    if (!field.mounted || !field.visible) return
+    if (typeof formatFun === 'function') {
+      // 这里做一些处理
+      field.value = formatFun(field.value)
+    }
+  })
+  console.log('schema:', schema)
+  return schema
 });
 
 
 const AboutPage = () => {
-
   return (
     <div
       style={{
@@ -104,9 +108,9 @@ const AboutPage = () => {
                 }
               }}
               x-format={trimEnd}
-            // x-reactions="{{trimFun}}"
+              x-reactions="{{trimFun}}"
             />
-            <SchemaField.String
+            {/* <SchemaField.String
               name="password"
               title="密码"
               required
@@ -298,7 +302,7 @@ const AboutPage = () => {
                 x-component="ArrayItems.Addition"
                 title="新增联系人"
               />
-            </SchemaField.Array>
+            </SchemaField.Array> */}
           </SchemaField>
           <FormButtonGroup.FormItem>
             <Submit block size="large">

@@ -7,29 +7,20 @@ const form = createForm()
 
 const DemoPage = () => {
   console.log('form:', form)
+  const ageProps = {
+    name: 'age',
+    placeholder: '请输入年龄',
+    style: {
+      width: 100,
+    },
+  }
   return (
     <FormProvider form={form}>
       <Space>
         <Field
-          name="price"
-          title="价格"
-          initialValue={5.2}
-          decorator={[FormItem]}
-          component={[
-            NumberPicker,
-            {
-              placeholder: '请输入价格',
-              style: {
-                width: 100,
-              },
-            },
-          ]}
-        />
-        <FormItem>×</FormItem>
-        <Field
-          name="count"
+          name="total"
           title="数量"
-          initialValue={100}
+          initialValue={10}
           decorator={[FormItem]}
           component={[
             NumberPicker,
@@ -41,18 +32,37 @@ const DemoPage = () => {
             },
           ]}
         />
-
         <Field
-          name="test"
-          title="test"
-          initialValue={100}
-          component={[NumberPicker]}
+          name="price"
+          title="价格"
+          initialValue={52}
+          decorator={[FormItem]}
+          component={[
+            NumberPicker,
+            {
+              placeholder: '请输入价格',
+              style: {
+                width: 100,
+              },
+            },
+          ]}
+          reactions={(field) => {
+            field.query('.price')
+            field.query('.total')
+            // console.log('total:', price.value())
+          }}
         />
         <FormConsumer>
           {(form) => (
-            <FormItem>={` ${form.values.price * form.values.count} 元`}</FormItem>
+            <FormItem>={` ${form.values.price * form.values.total} 元`}</FormItem>
           )}
         </FormConsumer>
+      </Space>
+      <br />
+      <Space>
+        <FormItem label="FormItem 包裹">
+          <NumberPicker {...ageProps} />
+        </FormItem>
       </Space>
     </FormProvider>
   )
