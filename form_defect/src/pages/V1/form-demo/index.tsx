@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
-import { getIdCardInfo } from '../../utils/index';
+import { getIdCardInfo } from '../../../utils/index';
 
 
 // 身份证正则
@@ -70,6 +70,7 @@ const MyForm = () => {
     }
   }
 
+  console.log("---------渲染--------")
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>

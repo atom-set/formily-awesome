@@ -16,7 +16,7 @@ import {
   Editable,
   FormButtonGroup,
 } from '@formily/antd'
-import { getIdCardInfo } from '../../utils/index';
+import { getIdCardInfo } from '../../../utils/index';
 import moment from 'moment';
 import { message } from 'antd';
 
@@ -32,11 +32,11 @@ export default () => {
           const { sex, birthday } = getIdCardInfo(field.value);
           form.setFieldState("sex", (state: any) => {
             state.value = sex
-            form.clearErrors(state.path.entire);
+            // form.clearErrors(state.path.entire);
           })
           form.setFieldState("birthday", (state: any) => {
             state.value = moment(birthday, "YYYY-MM-DD")
-            form.clearErrors(state.path.entire);
+            // form.clearErrors(state.path.entire);
           })
         }
       })
@@ -124,6 +124,19 @@ export default () => {
             x-decorator="FormItem"
             x-component="Input"
           />
+          {/* {
+            Array.from({ length: 1000 }, (_, index) => {
+              return <SchemaField.String
+                name={index}
+                title={index}
+                key={index}
+                required
+                x-validator="phone"
+                x-decorator="FormItem"
+                x-component="Input"
+              />
+            })
+          } */}
         </SchemaField>
         <FormButtonGroup.FormItem>
           <Submit block size="large">
@@ -131,6 +144,6 @@ export default () => {
           </Submit>
         </FormButtonGroup.FormItem>
       </Form>
-    </div>
+    </div >
   )
 }
