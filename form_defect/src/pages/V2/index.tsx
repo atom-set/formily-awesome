@@ -3,9 +3,7 @@ import { createForm, isField, onFieldInit, onFieldValueChange, onFormSubmitSucce
 import { Field } from '@formily/react'
 import { Form, FormButtonGroup, FormItem, Input, Radio, Submit } from '@formily/antd'
 import { Tabs, Card, Select, Checkbox, Switch, InputNumber, Button } from 'antd'
-import { observable,reaction, batch } from '@formily/reactive'
 import { observer, inject } from "mobx-react";
-import { autorun } from 'mobx'
 const App = observer(({ v2Store }: any) => {
     const form = createForm({
         validateFirst: true,
@@ -18,9 +16,17 @@ const App = observer(({ v2Store }: any) => {
                     })
                 }
             });
+            onFieldValueChange('count', (field: any) => {
+                if (isField(field)) {
+                    v2Store.setCount(field.value)
+                }
+            });
             onFormSubmitSuccess((field) => {
                 console.log(field.values)
             })
+        },
+        initialValues: {
+            count: v2Store.count
         }
     })
 
@@ -28,7 +34,7 @@ const App = observer(({ v2Store }: any) => {
         form.setFieldState("count", (state: any) => {
             state.value = v2Store.count;
         })
-      }, [v2Store.count]);
+    }, [v2Store.count]);
 
     return (<>
         <Switch
@@ -88,7 +94,6 @@ const App = observer(({ v2Store }: any) => {
             <Field
                 name="content"
                 title="备注"
-                required
                 decorator={[FormItem]}
                 component={[Input.TextArea]}
             />

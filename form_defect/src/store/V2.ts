@@ -17,5 +17,11 @@ class AppStore {
   decrement() {
     this.count--;
   }
+
+  @action
+  setCount(num:any) {
+    this.count = num;
+  }
+
 }
 export default AppStore;

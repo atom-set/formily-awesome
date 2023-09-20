@@ -12,6 +12,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider {...stores}>
     <React.StrictMode>
       <Card style={{ width: "660px" }}>
+        <Button onClick={() => {
+          stores.v2Store.increment()
+        }}>周期加</Button>
+        <Button onClick={() => {
+          stores.v2Store.decrement()
+        }}>周期减</Button>
         <Tabs defaultActiveKey='1'>
           <Tabs.TabPane tab="原生form实现" key="1">
             <Form />
@@ -21,12 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </Tabs.TabPane>
           <Tabs.TabPane tab="formily实现" key="3">
             {/* <Formily /> */}
-            <Button onClick={() => {
-              stores.v2Store.increment()
-            }}>周期加</Button>
-            <Button onClick={() => {
-              stores.v2Store.decrement()
-            }}>周期减</Button>
             <FormilyJSX />
           </Tabs.TabPane>
         </Tabs>
