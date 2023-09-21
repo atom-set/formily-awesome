@@ -14,9 +14,14 @@ import UserLoginV1 from './pages/02.UserLogin/V1';
 import UserLoginV2 from './pages/02.UserLogin/V2';
 import UserLoginV3 from './pages/02.UserLogin/V3';
 
+// FormItem 封装
+import FormItemV1 from './pages/03.FormItem/V1';
+import FormItemV2 from './pages/03.FormItem/V2';
+import FormItemV3 from './pages/03.FormItem/V3';
+
 // antd源码系统
-import AntdV1 from './pages/20.Antd/V1';
-import AntdV2 from './pages/20.Antd/V2';
+// import AntdV1 from './pages/20.Antd/V1';
+// import AntdV2 from './pages/20.Antd/V2';
 
 function App() {
   return (
@@ -24,21 +29,26 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />} >
-            {/* <Route path="/" element={<Home />} />
-            <Route path="/demo" element={<About />} /> */}
-            <Route path="/debugger" element={<AntdV2 />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/demo" element={<About />} />
+            {/* <Route path="/debugger" element={<AntdV2 />} /> */}
 
             {/* --- 原生方式实现联动 --- */}
-            {/* <Route path="normalLinkage" element={<NormalLinkage />} /> */}
+            <Route path="normalLinkage" element={<NormalLinkage />} />
             {/* antd 方式实现联动 */}
-            {/* <Route path="antLinkage" element={<AntLinkage />} /> */}
+            <Route path="antLinkage" element={<AntLinkage />} />
             {/* formily 方式实现联动 */}
-            {/* <Route path="formilyLinkage" element={<FormilyLinkage />} /> */}
+            <Route path="formilyLinkage" element={<FormilyLinkage />} />
 
             {/* 用户登陆注册 */}
-            {/* <Route path="userLogin/v1" element={<UserLoginV1 />} />
+            <Route path="userLogin/v1" element={<UserLoginV1 />} />
             <Route path="userLogin/v2" element={<UserLoginV2 />} />
-            <Route path="userLogin/v3" element={<UserLoginV3 />} /> */}
+            <Route path="userLogin/v3" element={<UserLoginV3 />} />
+
+            {/* FormItem封装 */}
+            <Route path="formItem/v1" element={<FormItemV1 />} />
+            <Route path="formItem/v2" element={<FormItemV2 />} />
+            <Route path="formItem/v3" element={<FormItemV3 />} />
 
             {/* ant design 系列*/}
             {/* <Route path="antd/v1" element={<AntdV1 />} />

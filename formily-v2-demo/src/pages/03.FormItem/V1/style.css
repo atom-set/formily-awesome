@@ -1,0 +1,116 @@
+.normalV2 {
+  margin-top: 20px;
+}
+
+.normalV2 .header {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.normalV2 .header li {
+  text-align: left;
+  color: #666;
+  font-size: 14px;
+}
+.normalV2 .field {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+
+
+.normalV2 .error {
+  text-align: right;
+  color: red;
+  margin-top: 10px;
+}
+
+.normalV2 .item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  vertical-align: top;
+}
+
+.normalV2 .label {
+  width: 200px;
+  justify-content: flex-end;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+}
+
+.normalV2 .label::after {
+  content: ":";
+  position: relative;
+  margin-block: 0;
+  margin-inline-start: 2px;
+  margin-inline-end: 8px;
+}
+
+.normalV2 .required::before {
+  display: inline-block;
+  margin-inline-end: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: "*";
+}
+
+.normalV2 .input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  background-color: #ffffff;
+  background-image: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(186 203 255);
+  border-radius: 6px;
+  transition: all 0.2s;
+  height: 28px,
+}
+
+.normalV2 .disabled {
+  color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: #d9d9d9;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.normalV2 code {
+  margin-left: 20px;
+}
+
+.normalV2 pre {
+  display: block;
+  text-align: left;
+  font-family: monospace;
+  margin: 1em 0px;
+}
