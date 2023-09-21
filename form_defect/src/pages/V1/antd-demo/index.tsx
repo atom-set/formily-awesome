@@ -1,6 +1,6 @@
 import { Button, Checkbox, DatePicker, Form, Input, message, Radio, Select } from 'antd';
 import React from 'react';
-import { getIdCardInfo } from '../../utils/index';
+import { getIdCardInfo } from '../../../utils/index';
 import dayjs from 'dayjs';
 
 // 身份证正则
@@ -89,7 +89,17 @@ const App: React.FC = () => {
             >
                 <Input />
             </Form.Item>
-
+            {/* {
+                Array.from({ length: 1000 }, (_, index) => {
+                    return <Form.Item
+                        label={index}
+                        name={index}
+                        rules={[{ required: true, pattern: phoneReg, message: '必填项!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                })
+            } */}
             <Form.Item wrapperCol={{ offset: 5 }} style={{ margin: 0 }}>
                 <Button type="primary" htmlType="submit">
                     提交
