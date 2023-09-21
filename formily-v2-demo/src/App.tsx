@@ -20,8 +20,8 @@ import FormItemV2 from './pages/03.FormItem/V2';
 import FormItemV3 from './pages/03.FormItem/V3';
 
 // antd源码系统
-// import AntdV1 from './pages/20.Antd/V1';
-// import AntdV2 from './pages/20.Antd/V2';
+import AntdV1 from './pages/20.Antd/V1';
+import AntdV2 from './pages/20.Antd/V2';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route element={<Layout />} >
             <Route path="/" element={<Home />} />
             <Route path="/demo" element={<About />} />
-            {/* <Route path="/debugger" element={<AntdV2 />} /> */}
+            <Route path="/debugger" element={<AntdV2 />} />
 
             {/* --- 原生方式实现联动 --- */}
             <Route path="normalLinkage" element={<NormalLinkage />} />
@@ -51,8 +51,8 @@ function App() {
             <Route path="formItem/v3" element={<FormItemV3 />} />
 
             {/* ant design 系列*/}
-            {/* <Route path="antd/v1" element={<AntdV1 />} />
-            <Route path="antd/v2" element={<AntdV2 />} /> */}
+            <Route path="antd/v1" element={<AntdV1 />} />
+            <Route path="antd/v2" element={<AntdV2 />} />
           </Route>
         </Routes>
       </BrowserRouter>

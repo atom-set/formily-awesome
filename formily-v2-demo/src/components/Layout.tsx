@@ -44,17 +44,16 @@ export default function Layout() {
       title: 'FormItem：Formily版本',
       href: '/formItem/v3',
     },
-
     
     // antd组件
-    // {
-    //   title: 'antd最小组件集合',
-    //   href: '/antd/v1',
-    // },
-    // {
-    //   title: 'antd最小组件集合间关系',
-    //   href: '/antd/v2',
-    // },
+    {
+      title: 'antd组件: antd最小组件集合',
+      href: '/antd/v1',
+    },
+    {
+      title: 'antd组件: antd最小组件集合间关系',
+      href: '/antd/v2',
+    },
   ];
 
   const handleClick = () => {
