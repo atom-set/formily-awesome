@@ -1,5 +1,5 @@
 /**
- * @description 构建antd最小组件间的关系
+ * @description Formily JSX 形式执行过程
  */
 import React from 'react'
 import { FormItem, Input, Space } from '@formily/antd'
@@ -10,7 +10,6 @@ const form = createForm()
 
 const DemoPage = () => {
   console.log('form:', form)
-  form.getFormGraph();
 
   return (
     // createContent
@@ -38,9 +37,6 @@ const DemoPage = () => {
           initialValue={180}
           decorator={[FormItem]}
           reactions={[(field) => {
-             if (field.mounted) {
-              form.fields?.amount?.destroy()
-            }
             const total = field.query('total')
             field.value = total.get("value") * 18
           }]}

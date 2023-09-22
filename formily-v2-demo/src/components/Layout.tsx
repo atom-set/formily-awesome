@@ -51,8 +51,12 @@ export default function Layout() {
       href: '/antd/v1',
     },
     {
-      title: 'antd组件: antd最小组件集合间关系',
+      title: 'Formily JSX 形式执行过程',
       href: '/antd/v2',
+    },
+    {
+      title: 'Formily Schema 形式执行过程',
+      href: '/antd/v3',
     },
   ];
 

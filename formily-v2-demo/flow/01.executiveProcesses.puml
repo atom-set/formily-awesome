@@ -1,0 +1,42 @@
+@startuml
+skinparam maxMessageSize 40
+autonumber
+App -> formily@core: createForm()
+formily@core -> formily@core: initialize()
+formily@core -> formily@core: 调用Graph构造函数
+formily@core -> formily@reactive: 将setGraph指定为可响应的
+formily@reactive -> formily@reactive: buildDataTreeh
+formily@reactive -> formily@reactive: getObservableMaker
+formily@core <- formily@reactive: return
+formily@core -> formily@core: 调用Heart构造函数
+formily@core -> formily@core: 执行effects函数
+formily@core -> formily@core: makeObservable()
+formily@core -> formily@core: 将Form模型的属性和方法制定为可响应的
+formily@core -> formily@core: makeReactive()
+formily@core -> formily@core: makeValues()
+formily@core -> formily@core: 触发onFormInit声明周期
+formily@core -> App: 返回Form模型
+App -> formily@react: FormProvider组件
+formily@react -> formily@react: useAttach(props.form)
+formily@react -> formily@react: ContextCleaner content集合
+formily@react -> formily@react: Field组件
+formily@react -> formily@react: form.createField创建Field模型
+formily@react -> formily@react: this.locate(address)
+formily@react -> formily@react: initialize
+formily@react -> formily@react: makeObservable
+formily@react -> formily@react: makeReactive value
+formily@react -> formily@react: makeReactive initialValue
+formily@react -> formily@react: makeReactive display
+formily@react -> formily@react: makeReactive pattern
+formily@react -> formily@react: makeReactive reactions
+formily@react -> formily@react: onInit onFieldInit 生命周期
+formily@react -> formily@core: 触发 onFormGraphChange 钩子
+formily@core -> formily@react: return
+formily@react -> formily@react: useAttach(field)
+formily@react -> formily@react: ReactiveField组件
+formily@react -> formily@reactiveReact: observer
+formily@reactiveReact -> formily@react: return
+formily@react -> formily@react: renderComponent
+formily@react -> formily@react: renderDecorator
+formily@react -> App: return
+@enduml
