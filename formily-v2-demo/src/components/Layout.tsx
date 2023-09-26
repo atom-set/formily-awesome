@@ -44,7 +44,7 @@ export default function Layout() {
       title: 'FormItem：Formily版本',
       href: '/formItem/v3',
     },
-    
+
     // antd组件
     {
       title: 'antd组件: antd最小组件集合',
@@ -57,6 +57,16 @@ export default function Layout() {
     {
       title: 'Formily Schema 形式执行过程',
       href: '/antd/v3',
+    },
+    {
+      title: '扩展自定义组件',
+      href: '/antd/v4',
+    },
+    
+    // reactive 系列
+    {
+      title: 'reactive系列: observable函数',
+      href: '/reactive/v1',
     },
   ];
 

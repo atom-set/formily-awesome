@@ -6,7 +6,11 @@ import { FormItem, Input, Space } from '@formily/antd'
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/react'
 
-const form = createForm()
+const form = createForm({
+  effects: () => {
+
+  }
+})
 
 const DemoPage = () => {
   console.log('form:', form)
