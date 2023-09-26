@@ -1,5 +1,5 @@
 /**
- * @description Formily Schema 形式执行过程
+ * @description 封装自定义组件 antd
  */
 import React from 'react'
 import { FormItem, Input, Space } from '@formily/antd'
@@ -10,7 +10,6 @@ import { RatePro } from './RatePro'
 const form = createForm()
 
 const DemoPage = () => {
-  debugger
   console.log('form:', form)
 
   const SchemaField = createSchemaField({

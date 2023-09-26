@@ -7,15 +7,15 @@ export default function Layout() {
     // 联动
     {
       title: '联动：原生方式实现联动',
-      href: '/normalForm',
+      href: '/normalLinkage',
     },
     {
       title: '联动：antd 方式实现联动',
-      href: '/antForm',
+      href: '/antLinkage',
     },
     {
       title: '联动：formily 方式实现联动',
-      href: '/formilyForm',
+      href: '/formilyLinkage',
     },
     // 用户登陆
     {
@@ -67,6 +67,10 @@ export default function Layout() {
     {
       title: 'reactive系列: observable函数',
       href: '/reactive/v1',
+    },
+    {
+      title: 'reactive系列: batch',
+      href: '/reactive/v2',
     },
   ];
 
