@@ -38,7 +38,7 @@ function App() {
           <Route element={<Layout />} >
             <Route path="/" element={<Home />} />
             <Route path="/demo" element={<About />} />
-            <Route path="/debugger" element={<AntdV2 />} />
+            <Route path="/debugger" element={<AntdV4 />} />
 
             {/* --- 原生方式实现联动 --- */}
             <Route path="normalLinkage" element={<NormalLinkage />} />

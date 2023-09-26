@@ -10,6 +10,7 @@ import { RatePro } from './RatePro'
 const form = createForm()
 
 const DemoPage = () => {
+  debugger
   console.log('form:', form)
 
   const SchemaField = createSchemaField({
