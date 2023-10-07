@@ -4,7 +4,7 @@
 import React from 'react'
 import { observable, autorun, batch } from '@formily/reactive'
 
-
+debugger
 const obs = observable({
   aa: 1,
   bb: 2,

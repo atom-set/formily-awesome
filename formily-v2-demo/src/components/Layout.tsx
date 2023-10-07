@@ -72,6 +72,20 @@ export default function Layout() {
       title: 'reactive系列: batch',
       href: '/reactive/v2',
     },
+
+  // react api 系列
+    {
+      title: 'react api 系列: ForwardRef',
+      href: '/api/forwardRef/v1',
+    },
+    {
+      title: 'react api 系列: 多个组件中转发 ref',
+      href: '/api/forwardRef/v2',
+    },
+    {
+      title: 'react api 系列: 暴露一个命令式句柄而不是 DOM 节点',
+      href: '/api/forwardRef/v3',
+    },
   ];
 
   const handleClick = () => {

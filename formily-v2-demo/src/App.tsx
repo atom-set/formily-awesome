@@ -33,6 +33,13 @@ const AntdV4 = lazy(() => import('.//pages/20.Antd/V4'));
 const ReactiveV1 = lazy(() => import('./pages/21.Reactive/V1'))
 const ReactiveV2 = lazy(() => import('./pages/21.Reactive/V2'))
 
+
+// 原生React API
+const ForwardRefApiV1 = lazy(() => import('./pages/30.ReactApi/forwardRefV1'))
+const ForwardRefApiV2 = lazy(() => import('./pages/30.ReactApi/forwardRefV2'))
+const ForwardRefApiV3 = lazy(() => import('./pages/30.ReactApi/forwardRefV3'))
+
+
 function App() {
   return (
     <div className="App">
@@ -81,6 +88,11 @@ function App() {
               {/* reactive系列 */}
               <Route path="reactive/v1" element={<ReactiveV1 />} />
               <Route path="reactive/v2" element={<ReactiveV2 />} />
+
+              {/* React API */}
+              <Route path="api/forwardRef/v1" element={<ForwardRefApiV1 />} />
+              <Route path="api/forwardRef/v2" element={<ForwardRefApiV2 />} />
+              <Route path="api/forwardRef/v3" element={<ForwardRefApiV3 />} />
             </Route>
           </Routes>
         </Suspense>
