@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { forwardRef, memo, Fragment } from 'react'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { useObserver } from './hooks/useObserver'

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react'
 import { isFn, isStr, FormPath, each, isValid } from '@formily/shared'
 import { isVoidField } from '@formily/core'

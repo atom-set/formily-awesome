@@ -26,7 +26,9 @@ const FormItemV3 = lazy(() => import('./pages/03.FormItem/V3'));
 const AntdV1 = lazy(() => import('.//pages/20.Antd/V1'));
 const AntdV2 = lazy(() => import('.//pages/20.Antd/V2'));
 const AntdV3 = lazy(() => import('.//pages/20.Antd/V3'));
-const AntdV4 = lazy(() => import('.//pages/20.Antd/V4'));
+
+const AntdV8 = lazy(() => import('./pages/20.Antd/V8'));
+const AntdV9 = lazy(() => import('./pages/20.Antd/V9'));
 
 
 // reactive系列
@@ -60,7 +62,7 @@ function App() {
             <Route element={<Layout />} >
               <Route path="/" element={<Home />} />
               <Route path="/demo" element={<About />} />
-              <Route path="/debugger" element={<AntdV4 />} />
+              <Route path="/debugger" element={<AntdV9 />} />
 
               {/* --- 原生方式实现联动 --- */}
               <Route path="normalLinkage" element={<NormalLinkage />} />
@@ -83,7 +85,8 @@ function App() {
               <Route path="antd/v1" element={<AntdV1 />} />
               <Route path="antd/v2" element={<AntdV2 />} />
               <Route path="antd/v3" element={<AntdV3 />} />
-              <Route path="antd/v4" element={<AntdV4 />} />
+              <Route path="antd/v8" element={<AntdV8 />} />
+              <Route path="antd/v9" element={<AntdV9 />} />
 
               {/* reactive系列 */}
               <Route path="reactive/v1" element={<ReactiveV1 />} />

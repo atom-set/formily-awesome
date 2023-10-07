@@ -6,7 +6,7 @@ debugger
 export const RatePro = connect(
   AntdRate,
   mapProps((props, field) => {
-    console.log('props:', props)
+    console.log('props:', props, field)
     return {
       ...props,
     }

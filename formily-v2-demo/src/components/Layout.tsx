@@ -55,12 +55,16 @@ export default function Layout() {
       href: '/antd/v2',
     },
     {
-      title: 'Formily Schema 形式执行过程',
+      title: 'Formily JSX 自定义组件',
       href: '/antd/v3',
     },
     {
+      title: 'Formily Schema 形式执行过程',
+      href: '/antd/v8',
+    },
+    {
       title: '扩展自定义组件',
-      href: '/antd/v4',
+      href: '/antd/v9',
     },
     
     // reactive 系列
