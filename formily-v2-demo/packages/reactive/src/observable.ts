@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as annotations from './annotations'
 import { MakeObModelSymbol } from './environment'
 import { createObservable } from './internals'

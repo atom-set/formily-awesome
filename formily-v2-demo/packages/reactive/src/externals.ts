@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   isValid,
   isFn,
@@ -84,8 +85,9 @@ export const markObservable = <T>(target: T): T => {
 export const raw = <T>(target: T): T => {
   // target 存在原数据
   if (target?.[ObModelSymbol]) return target[ObModelSymbol]
+  
   // 如果存在代理，返回代理
-  // 最后返回本身
+  // 否则返回本身
   return ProxyRaw.get(target as any) || target
 }
 

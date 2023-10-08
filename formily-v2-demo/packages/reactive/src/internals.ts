@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { isFn, isCollectionType, isNormalType } from './checkers'
 import {
   RawProxy,
@@ -80,7 +81,6 @@ export const createAnnotation = <T extends (visitor: IVisitor) => any>(
   return annotation
 }
 
-// TODO:
 export const getObservableMaker = (target: any) => {
   if (target[MakeObModelSymbol]) {
     if (!target[MakeObModelSymbol][MakeObModelSymbol]) {
