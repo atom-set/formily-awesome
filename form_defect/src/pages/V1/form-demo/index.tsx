@@ -35,8 +35,7 @@ const MyForm = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     checkForm();
-
-    // message.success("提交成功")
+    message.success("提交成功")
   };
 
 
@@ -73,41 +72,51 @@ const MyForm = () => {
   console.log("---------渲染--------")
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <form className='form' ref={formRef} onSubmit={handleSubmit} onChange={(e: any) => checkForm(e.target.name)}>
       <p>
-        姓名：
-        <input type="text" name="name" onChange={() => checkForm("name")} />
+        <div className='form_item'>
+          <div className='form_label'>姓名：</div>
+          <input type="text" name="name" />
+        </div>
         {
-          nameMsg && <span className='msg_error'>{nameMsg}</span>
+          nameMsg && <div className='form_msg'>{nameMsg}</div>
         }
       </p>
       <p>
-        身份证号：
-        <input type="text" name="idCard" onChange={onChange} />
+        <div className='form_item'>
+          <div className='form_label'>身份证号：</div>
+          <input type="text" name="idCard" onChange={onChange} />
+        </div>
         {
-          idCardMsg && <span className='msg_error'>{idCardMsg}</span>
+          idCardMsg && <div className='form_msg'>{idCardMsg}</div>
         }
       </p>
       <p>
-        性别：
-        <input type="radio" name="sex" value="男" onChange={() => checkForm("sex")} />男
-        <input type="radio" name="sex" value="女" onChange={() => checkForm("sex")} />女
+        <div className='form_item'>
+          <div className='form_label'>性别：</div>
+          <input type="radio" name="sex" value="男" />男
+          <input type="radio" name="sex" value="女" />女
+        </div>
         {
-          sexMsg && <span className='msg_error'>{sexMsg}</span>
+          sexMsg && <div className='form_msg'>{sexMsg}</div>
         }
       </p>
       <p>
-        出生日期：
-        <input type="text" name="birthday" onChange={() => checkForm("birthday")} />
+        <div className='form_item'>
+          <div className='form_label'>出生日期：</div>
+          <input type="text" name="birthday" />
+        </div>
         {
-          birthdayMsg && <span className='msg_error'>{birthdayMsg}</span>
+          birthdayMsg && <div className='form_msg'>{birthdayMsg}</div>
         }
       </p>
       <p>
-        联系电话：
-        <input type="text" name="phone" onChange={() => checkForm("phone")} />
+        <div className='form_item'>
+          <div className='form_label'>联系电话：</div>
+          <input type="text" name="phone" />
+        </div>
         {
-          phoneMsg && <span className='msg_error'>{phoneMsg}</span>
+          phoneMsg && <div className='form_msg'>{phoneMsg}</div>
         }
       </p>
       {/* {
@@ -117,7 +126,7 @@ const MyForm = () => {
               测试：
               <input type="text" name={index + ""} onChange={() => checkForm("phone")} />
               {
-                phoneMsg && <span className='msg_error'>{phoneMsg}</span>
+                phoneMsg && <span className='form_msg'>{phoneMsg}</span>
               }
             </p>
             <br />
