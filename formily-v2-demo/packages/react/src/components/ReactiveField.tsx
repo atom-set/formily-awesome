@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Fragment, useContext } from 'react'
 import { toJS } from '@formily/reactive'
 import { observer } from '@formily/reactive-react'

@@ -2,7 +2,6 @@
 import { connect, mapProps, mapReadPretty } from '@formily/react'
 import { Rate as AntdRate } from 'antd'
 
-debugger
 export const RatePro = connect(
   AntdRate,
   mapProps((props, field) => {

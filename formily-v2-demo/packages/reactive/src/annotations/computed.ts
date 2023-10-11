@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ObModelSymbol, ReactionStack } from '../environment'
 import { createAnnotation } from '../internals'
 import { buildDataTree } from '../tree'

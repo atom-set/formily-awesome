@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { IOperation } from './types'
 import { ObserverListeners } from './environment'
 import { raw as getRaw } from './externals'

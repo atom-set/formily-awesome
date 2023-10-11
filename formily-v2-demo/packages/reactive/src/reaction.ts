@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import { isFn } from './checkers'
 import { ArraySet } from './array'
 import { IOperation, ReactionsMap, Reaction, PropertyKey } from './types'
