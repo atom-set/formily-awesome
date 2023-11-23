@@ -41,6 +41,9 @@ const ForwardRefApiV1 = lazy(() => import('./pages/30.ReactApi/forwardRefV1'))
 const ForwardRefApiV2 = lazy(() => import('./pages/30.ReactApi/forwardRefV2'))
 const ForwardRefApiV3 = lazy(() => import('./pages/30.ReactApi/forwardRefV3'))
 
+// RegisterPatches 
+const RegisterPatchesV1 = lazy(() => import('./pages/22.RegisterPatches/V1'))
+
 
 function App() {
   return (
@@ -91,6 +94,9 @@ function App() {
               {/* reactive系列 */}
               <Route path="reactive/v1" element={<ReactiveV1 />} />
               <Route path="reactive/v2" element={<ReactiveV2 />} />
+
+              {/* RegisterPatchesV1  */}
+              <Route path="registerPatches/v1" element={<RegisterPatchesV1 />} />
 
               {/* React API */}
               <Route path="api/forwardRef/v1" element={<ForwardRefApiV1 />} />

@@ -66,7 +66,7 @@ export default function Layout() {
       title: '扩展自定义组件',
       href: '/antd/v9',
     },
-    
+
     // reactive 系列
     {
       title: 'reactive系列: observable函数',
@@ -77,7 +77,14 @@ export default function Layout() {
       href: '/reactive/v2',
     },
 
-  // react api 系列
+    // registerPatches 系列
+    {
+      title: 'registerPatches',
+      href: '/registerPatches/v1',
+    },
+
+
+    // react api 系列
     {
       title: 'react api 系列: ForwardRef',
       href: '/api/forwardRef/v1',
