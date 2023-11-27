@@ -30,20 +30,18 @@ const AntdV3 = lazy(() => import('.//pages/20.Antd/V3'));
 const AntdV8 = lazy(() => import('./pages/20.Antd/V8'));
 const AntdV9 = lazy(() => import('./pages/20.Antd/V9'));
 
-
 // reactive系列
 const ReactiveV1 = lazy(() => import('./pages/21.Reactive/V1'))
 const ReactiveV2 = lazy(() => import('./pages/21.Reactive/V2'))
 
+// RegisterPatches 
+const RegisterPatchesV1 = lazy(() => import('./pages/22.RegisterPatches/V1'))
 
 // 原生React API
 const ForwardRefApiV1 = lazy(() => import('./pages/30.ReactApi/forwardRefV1'))
 const ForwardRefApiV2 = lazy(() => import('./pages/30.ReactApi/forwardRefV2'))
 const ForwardRefApiV3 = lazy(() => import('./pages/30.ReactApi/forwardRefV3'))
-
-// RegisterPatches 
-const RegisterPatchesV1 = lazy(() => import('./pages/22.RegisterPatches/V1'))
-
+const UseContentV1 = lazy(() => import('./pages/30.ReactApi/useContentV1'))
 
 function App() {
   return (
@@ -102,6 +100,8 @@ function App() {
               <Route path="api/forwardRef/v1" element={<ForwardRefApiV1 />} />
               <Route path="api/forwardRef/v2" element={<ForwardRefApiV2 />} />
               <Route path="api/forwardRef/v3" element={<ForwardRefApiV3 />} />
+              <Route path="api/useContent/v1" element={<UseContentV1 />} />
+
             </Route>
           </Routes>
         </Suspense>

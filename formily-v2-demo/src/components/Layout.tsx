@@ -83,7 +83,6 @@ export default function Layout() {
       href: '/registerPatches/v1',
     },
 
-
     // react api 系列
     {
       title: 'react api 系列: ForwardRef',
@@ -96,6 +95,10 @@ export default function Layout() {
     {
       title: 'react api 系列: 暴露一个命令式句柄而不是 DOM 节点',
       href: '/api/forwardRef/v3',
+    },
+    {
+      title: 'react api 系列: useContent',
+      href: '/api/useContent/v1',
     },
   ];
 
