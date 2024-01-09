@@ -22,6 +22,11 @@ const FormItemV1 = lazy(() => import('./pages/03.FormItem/V1'));
 const FormItemV2 = lazy(() => import('./pages/03.FormItem/V2'));
 const FormItemV3 = lazy(() => import('./pages/03.FormItem/V3'));
 
+// arrayTable
+const ArrayTableDemo = lazy(() => import('./pages/04.ArrayTable/index'));
+// formTab
+const FormTabDemo = lazy(() => import('./pages/05.FormTab/index'));
+
 // antd源码系统
 const AntdV1 = lazy(() => import('.//pages/20.Antd/V1'));
 const AntdV2 = lazy(() => import('.//pages/20.Antd/V2'));
@@ -42,6 +47,11 @@ const ForwardRefApiV1 = lazy(() => import('./pages/30.ReactApi/forwardRefV1'))
 const ForwardRefApiV2 = lazy(() => import('./pages/30.ReactApi/forwardRefV2'))
 const ForwardRefApiV3 = lazy(() => import('./pages/30.ReactApi/forwardRefV3'))
 const UseContentV1 = lazy(() => import('./pages/30.ReactApi/useContentV1'))
+
+// designable 
+const DesignableLoginPage = lazy(() => import('./pages/40.Designable/login'))
+
+
 
 function App() {
   return (
@@ -89,6 +99,12 @@ function App() {
               <Route path="antd/v8" element={<AntdV8 />} />
               <Route path="antd/v9" element={<AntdV9 />} />
 
+              {/* arrayTable */}
+              <Route path="arrayTable" element={<ArrayTableDemo />} />
+
+              {/* formTab */}
+              <Route path="formTab" element={<FormTabDemo />} />
+
               {/* reactive系列 */}
               <Route path="reactive/v1" element={<ReactiveV1 />} />
               <Route path="reactive/v2" element={<ReactiveV2 />} />
@@ -102,7 +118,9 @@ function App() {
               <Route path="api/forwardRef/v3" element={<ForwardRefApiV3 />} />
               <Route path="api/useContent/v1" element={<UseContentV1 />} />
 
+              <Route path="designable/login" element={<DesignableLoginPage />} />
             </Route>
+
           </Routes>
         </Suspense>
       </BrowserRouter>

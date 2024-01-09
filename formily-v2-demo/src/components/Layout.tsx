@@ -45,6 +45,17 @@ export default function Layout() {
       href: '/formItem/v3',
     },
 
+    // arrayTable
+    {
+      title: 'ArrayTable 组件',
+      href: '/arrayTable'
+    },
+    // formTab
+    {
+      title: 'FormTab组件',
+      href: '/formTab'
+    },
+
     // antd组件
     {
       title: 'antd组件: antd最小组件集合',
@@ -99,6 +110,11 @@ export default function Layout() {
     {
       title: 'react api 系列: useContent',
       href: '/api/useContent/v1',
+    },
+
+    {
+      title: 'designable 版本用户登陆',
+      href: '/designable/login',
     },
   ];
 
