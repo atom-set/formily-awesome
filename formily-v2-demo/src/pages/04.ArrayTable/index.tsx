@@ -7,7 +7,7 @@ import {
   FormButtonGroup,
   Submit,
 } from '@formily/antd'
-import { createForm, onFieldValueChange } from '@formily/core'
+import { createForm, onFieldValueChange, onFieldChange } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 import { Button, Alert } from 'antd'
 
@@ -31,6 +31,9 @@ const ArrayTableDemo = () => {
     () =>
       createForm({
         effects() {
+          onFieldChange('array', (field) => {
+            console.log(form.values.array)
+          })
           onFieldValueChange('array.*.a2', (field) => {
             console.log('field:', field, field.address.entire)
             console.log(form.values)

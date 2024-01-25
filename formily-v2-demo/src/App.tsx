@@ -27,6 +27,9 @@ const ArrayTableDemo = lazy(() => import('./pages/04.ArrayTable/index'));
 // formTab
 const FormTabDemo = lazy(() => import('./pages/05.FormTab/index'));
 
+// Observer
+const ObserverRef = lazy(() => import('./pages/06.Observer/01.ref'));
+
 // antd源码系统
 const AntdV1 = lazy(() => import('.//pages/20.Antd/V1'));
 const AntdV2 = lazy(() => import('.//pages/20.Antd/V2'));
@@ -104,6 +107,9 @@ function App() {
 
               {/* formTab */}
               <Route path="formTab" element={<FormTabDemo />} />
+
+              {/*  observer */}
+              <Route path="observer/ref" element={<ObserverRef />} />
 
               {/* reactive系列 */}
               <Route path="reactive/v1" element={<ReactiveV1 />} />

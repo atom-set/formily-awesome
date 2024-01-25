@@ -78,6 +78,12 @@ export default function Layout() {
       href: '/antd/v9',
     },
 
+    // observer
+    {
+      title: 'observer ref',
+      href: '/observer/ref',
+    },
+
     // reactive 系列
     {
       title: 'reactive系列: observable函数',
