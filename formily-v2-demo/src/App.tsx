@@ -53,6 +53,7 @@ const UseContentV1 = lazy(() => import('./pages/30.ReactApi/useContentV1'))
 
 // designable 
 const DesignableLoginPage = lazy(() => import('./pages/40.Designable/login'))
+const DesignableFormTabPage = lazy(() => import('./pages/40.Designable/formTab'))
 
 
 
@@ -125,6 +126,7 @@ function App() {
               <Route path="api/useContent/v1" element={<UseContentV1 />} />
 
               <Route path="designable/login" element={<DesignableLoginPage />} />
+              <Route path="designable/formTab" element={<DesignableFormTabPage />} />
             </Route>
 
           </Routes>

@@ -122,6 +122,10 @@ export default function Layout() {
       title: 'designable 版本用户登陆',
       href: '/designable/login',
     },
+    {
+      title: 'designable FromTab',
+      href: '/designable/formTab',
+    },
   ];
 
   const handleClick = () => {
