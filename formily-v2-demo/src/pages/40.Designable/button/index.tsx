@@ -265,6 +265,9 @@ const schema = {
       type: 'void',
       "x-decorator": "FormButtonGroup.FormItem",
       "x-component": "Space",
+      "x-component-props": {
+        size: 'large'
+      },
       properties: {
         "lmguiifvoe4": {
           "type": "void",
