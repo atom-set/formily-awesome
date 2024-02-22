@@ -126,6 +126,14 @@ export default function Layout() {
       title: 'designable FromTab',
       href: '/designable/formTab',
     },
+    {
+      title: 'designable Button',
+      href: '/designable/button',
+    },
+    {
+      title: 'designable Demo',
+      href: '/designable/demo',
+    },
   ];
 
   const handleClick = () => {

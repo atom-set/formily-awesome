@@ -54,7 +54,8 @@ const UseContentV1 = lazy(() => import('./pages/30.ReactApi/useContentV1'))
 // designable 
 const DesignableLoginPage = lazy(() => import('./pages/40.Designable/login'))
 const DesignableFormTabPage = lazy(() => import('./pages/40.Designable/formTab'))
-
+const DesignableButtonPage = lazy(() => import('./pages/40.Designable/button'))
+const DesignableDemoPage = lazy(() => import('./pages/40.Designable/demo'))
 
 
 function App() {
@@ -125,8 +126,11 @@ function App() {
               <Route path="api/forwardRef/v3" element={<ForwardRefApiV3 />} />
               <Route path="api/useContent/v1" element={<UseContentV1 />} />
 
+              {/* jsonSchema */}
               <Route path="designable/login" element={<DesignableLoginPage />} />
               <Route path="designable/formTab" element={<DesignableFormTabPage />} />
+              <Route path="designable/button" element={<DesignableButtonPage />} />
+              <Route path="designable/demo" element={<DesignableDemoPage />} />
             </Route>
 
           </Routes>
