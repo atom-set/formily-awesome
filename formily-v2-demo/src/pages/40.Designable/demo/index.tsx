@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useMemo } from "react"
 import { createForm } from "@formily/core"
 import { createSchemaField } from "@formily/react"
@@ -28,6 +29,7 @@ import {
   FormCollapse,
   ArrayTable,
   ArrayCards,
+  FormButtonGroup,
 } from "@formily/antd"
 import { Card, Slider, Rate } from "antd"
 
@@ -63,6 +65,7 @@ const SchemaField = createSchemaField({
     Radio,
     Reset,
     Select,
+    Submit,
     TimePicker,
     Transfer,
     TreeSelect,
@@ -70,16 +73,52 @@ const SchemaField = createSchemaField({
     Card,
     Slider,
     Rate,
-    Submit,
   },
+  scope: {
+    fetchAddress: (field: any) => {
+      const transform = (data = {}) => {
+        return Object.entries(data).reduce((buf, [key, value]) => {
+          if (typeof value === 'string')
+            return buf.concat({
+              label: value,
+              value: key,
+            })
+          const { name, code, cities, districts } = value
+          const _cities = transform(cities)
+          const _districts = transform(districts)
+          return buf.concat({
+            label: name,
+            value: code,
+            children: _cities.length
+              ? _cities
+              : _districts.length
+                ? _districts
+                : undefined,
+          })
+        }, [])
+      }
+
+      field.loading = true
+      fetch('//unpkg.com/china-location/dist/location.json')
+        .then((res) => res.json())
+        .then((data) => {
+          field.dataSource = transform(data)
+          field.loading = false
+        })
+    }
+  }
 })
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+const DemoPage = () => {
   const form = useMemo(() => createForm(), [])
 
+
   return (
-    <Form form={form} labelCol={6} wrapperCol={12}>
+    <Form
+      form={form}
+      labelCol={6}
+      wrapperCol={12}
+    >
       <SchemaField>
         <SchemaField.String
           title="Input"
@@ -87,69 +126,27 @@ export default () => {
           x-component="Input"
           x-validator={[]}
           x-index={0}
-          name="i18epdfmm2v"
-        />
-        <SchemaField.Void
-          title=""
-          x-component="FormButtonGroup"
-          x-decorator="FormItem"
-          x-decorator-props={{
-            style: {
-              display: "flex",
-              flexDirection: "column",
-              alignContent: "space-around",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-            },
+          x-reactions={{
+            dependencies: [{ property: "value", type: "any" }],
+            fulfill: { run: "" },
           }}
-          x-index={1}
-          name="emunqrq9f9m"
+          name="64ksk8l9wrx"
         />
-        <SchemaField.Object x-index={2} name="4dw7v9gzjx7">
-          <SchemaField.String
-            title="Input"
-            x-decorator="FormItem"
-            x-component="Input"
-            x-validator={[]}
-            x-index={0}
-            name="d2a2h2xcz1v"
-          />
-          <SchemaField.Markup
-            title="Select"
-            x-decorator="FormItem"
-            x-component="Select"
-            x-validator={[]}
-            x-index={1}
-            name="ub7djxueexs"
-          />
-        </SchemaField.Object>
-        <SchemaField.Object x-index={3} name="4dw7v91gzjx7">
-          <SchemaField.Void
-            x-component="Submit"
-            x-validator={[]}
-            x-component-props={{
-              children: '提交',
-              onSubmit: () => {
-                console.log(111)
-              }
-            }}
-            x-index={10}
-            name="d2a2h2xcz1v"
-          />
-          <SchemaField.Void
-            x-component="Reset"
-            x-validator={[]}
-            x-component-props={{
-              children: '重置',
-              onSubmit: () => {
-                console.log(111)
-              }
-            }}
-            x-index={20}
-            name="d2a2h2xcz2v"
-          />
-        </SchemaField.Object>
+        <SchemaField.Markup
+          title="Cascader"
+          x-decorator="FormItem"
+          x-component="Cascader"
+          x-validator={[]}
+          x-index={1}
+          x-reactions="{{fetchAddress}}"
+          name="91r9orbuec8"
+        />
       </SchemaField>
+      <FormButtonGroup.FormItem>
+        <Submit onSubmit={console.log}>提交</Submit>
+        <Reset>重置</Reset>
+      </FormButtonGroup.FormItem>
     </Form>
   )
 }
+export default DemoPage;

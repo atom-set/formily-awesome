@@ -55,6 +55,7 @@ const UseContentV1 = lazy(() => import('./pages/30.ReactApi/useContentV1'))
 const DesignableLoginPage = lazy(() => import('./pages/40.Designable/login'))
 const DesignableFormTabPage = lazy(() => import('./pages/40.Designable/formTab'))
 const DesignableButtonPage = lazy(() => import('./pages/40.Designable/button'))
+const DesignableSchemaPage = lazy(() => import('./pages/40.Designable/schema/index'));
 const DesignableDemoPage = lazy(() => import('./pages/40.Designable/demo'))
 
 
@@ -130,6 +131,7 @@ function App() {
               <Route path="designable/login" element={<DesignableLoginPage />} />
               <Route path="designable/formTab" element={<DesignableFormTabPage />} />
               <Route path="designable/button" element={<DesignableButtonPage />} />
+              <Route path="designable/schema" element={<DesignableSchemaPage />} />
               <Route path="designable/demo" element={<DesignableDemoPage />} />
             </Route>
 

@@ -131,6 +131,10 @@ export default function Layout() {
       href: '/designable/button',
     },
     {
+      title: 'designable Json Schema',
+      href: '/designable/schema',
+    },
+    {
       title: 'designable Demo',
       href: '/designable/demo',
     },
