@@ -23,9 +23,30 @@ import { UploadOutlined } from '@ant-design/icons'
 
 const form = createForm({
   validateFirst: true,
-  effects() {
+  effects: () => {
     onFormMount(() => {
-      console.log('表单已挂载')
+      form.setInitialValues({
+        username: 'Aston Martin',
+        firstName: 'Aston',
+        lastName: 'Martin',
+        email: 'aston_martin@aston.com',
+        gender: 1,
+        birthday: '1836-01-03',
+        address: ['110000', '110000', '110101'],
+        idCard: [
+          {
+            name: 'this is image',
+            thumbUrl:
+              'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+            uid: 'rc-upload-1615825692847-2',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+          },
+        ],
+        contacts: [
+          { name: '张三', phone: '13245633378', email: 'zhangsan@gmail.com' },
+          { name: '李四', phone: '16873452678', email: 'lisi@gmail.com' },
+        ],
+      })
     })
     onFormInit(() => {
       console.log('表单已初始化')
@@ -279,33 +300,11 @@ const schema = {
 
 const PageDemo = () => {
   const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    setTimeout(() => {
-      form.setInitialValues({
-        username: 'Aston Martin',
-        firstName: 'Aston',
-        lastName: 'Martin',
-        email: 'aston_martin@aston.com',
-        gender: 1,
-        birthday: '1836-01-03',
-        address: ['110000', '110000', '110101'],
-        idCard: [
-          {
-            name: 'this is image',
-            thumbUrl:
-              'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-            uid: 'rc-upload-1615825692847-2',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-          },
-        ],
-        contacts: [
-          { name: '张三', phone: '13245633378', email: 'zhangsan@gmail.com' },
-          { name: '李四', phone: '16873452678', email: 'lisi@gmail.com' },
-        ],
-      })
-      setLoading(false)
-    }, 2000)
-  }, [])
+    console.log(form)
+    setLoading(false)
+  }, []);
   return (
     <div
       style={{

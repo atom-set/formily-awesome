@@ -59,7 +59,7 @@ export const runEffects = <Context>(
   context?: Context,
   ...args: ((context: Context) => void)[]
 ): LifeCycle[] => {
-  GlobalState.lifecycles = []
+    GlobalState.lifecycles = []
   GlobalState.context = []
   GlobalState.effectStart = true
   GlobalState.effectEnd = false
@@ -68,8 +68,8 @@ export const runEffects = <Context>(
   }
   args.forEach((effects) => {
     if (isFn(effects)) {
-      effects(context)
-    }
+    effects(context)
+  }
   })
   GlobalState.context = []
   GlobalState.effectStart = false
