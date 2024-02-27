@@ -35,8 +35,7 @@ export class Schema<
   Validator = any,
   Message = any,
   ReactionField = any
-> implements ISchema
-{
+> implements ISchema {
   parent?: Schema
   root?: Schema
   name?: SchemaKey
@@ -92,25 +91,25 @@ export class Schema<
   >
   items?:
     | Schema<
-        Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
-      >
+      Decorator,
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
+    >
     | Schema<
-        Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
-      >[]
+      Decorator,
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
+    >[]
   additionalItems?: Schema<
     Decorator,
     Component,
@@ -318,25 +317,25 @@ export class Schema<
   setItems = (
     schema:
       | ISchema<
-          Decorator,
-          Component,
-          DecoratorProps,
-          ComponentProps,
-          Pattern,
-          Display,
-          Validator,
-          Message
-        >
+        Decorator,
+        Component,
+        DecoratorProps,
+        ComponentProps,
+        Pattern,
+        Display,
+        Validator,
+        Message
+      >
       | ISchema<
-          Decorator,
-          Component,
-          DecoratorProps,
-          ComponentProps,
-          Pattern,
-          Display,
-          Validator,
-          Message
-        >[]
+        Decorator,
+        Component,
+        DecoratorProps,
+        ComponentProps,
+        Pattern,
+        Display,
+        Validator,
+        Message
+      >[]
   ) => {
     if (!schema) return
     if (Array.isArray(schema)) {
@@ -372,104 +371,104 @@ export class Schema<
 
   mapProperties = <T>(
     callback?: (
-      schema: Schema<
-        Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
+    schema: Schema<
+      Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
       >,
-      key: SchemaKey,
-      index: number
+    key: SchemaKey,
+    index: number
     ) => T
   ): T[] => {
-    return Schema.getOrderProperties(this).map(({ schema, key }, index) => {
+    return Schema.getOrderProperties(this).map(({schema, key}, index) => {
       return callback(schema, key, index)
     })
   }
 
-  mapPatternProperties = <T>(
-    callback?: (
+    mapPatternProperties = <T>(
+      callback?: (
       schema: Schema<
         Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
       >,
       key: SchemaKey,
       index: number
     ) => T
   ): T[] => {
     return Schema.getOrderProperties(this, 'patternProperties').map(
-      ({ schema, key }, index) => {
+      ({schema, key}, index) => {
         return callback(schema, key, index)
       }
-    )
+      )
   }
 
-  reduceProperties = <P, R>(
-    callback?: (
+      reduceProperties = <P, R>(
+      callback?: (
       buffer: P,
       schema: Schema<
         Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
       >,
       key: SchemaKey,
       index: number
     ) => R,
-    predicate?: P
+      predicate?: P
   ): R => {
-    let results: any = predicate
-    Schema.getOrderProperties(this, 'properties').forEach(
-      ({ schema, key }, index) => {
+        let results: any = predicate
+      Schema.getOrderProperties(this, 'properties').forEach(
+      ({schema, key}, index) => {
         results = callback(results, schema, key, index)
       }
-    )
-    return results
+      )
+      return results
   }
 
-  reducePatternProperties = <P, R>(
-    callback?: (
+      reducePatternProperties = <P, R>(
+      callback?: (
       buffer: P,
       schema: Schema<
         Decorator,
-        Component,
-        DecoratorProps,
-        ComponentProps,
-        Pattern,
-        Display,
-        Validator,
-        Message
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
       >,
       key: SchemaKey,
       index: number
     ) => R,
-    predicate?: P
+      predicate?: P
   ): R => {
-    let results: any = predicate
-    Schema.getOrderProperties(this, 'patternProperties').forEach(
-      ({ schema, key }, index) => {
+        let results: any = predicate
+      Schema.getOrderProperties(this, 'patternProperties').forEach(
+      ({schema, key}, index) => {
         results = callback(results, schema, key, index)
       }
-    )
-    return results
+      )
+      return results
   }
 
   compile = (scope?: any) => {
-    const schema = new Schema({}, this.parent)
+    const schema = new Schema({ }, this.parent)
     each(this, (value, key) => {
       if (isFn(value) && !key.includes('x-')) return
       if (key === 'parent' || key === 'root') return
@@ -479,12 +478,12 @@ export class Schema<
         schema[key] = value ? shallowCompile(value, scope) : value
       }
     })
-    return schema
+      return schema
   }
 
-  fromJSON = (
-    json: ISchema<
-      Decorator,
+      fromJSON = (
+      json: ISchema<
+        Decorator,
       Component,
       DecoratorProps,
       ComponentProps,
@@ -495,7 +494,7 @@ export class Schema<
     >
   ) => {
     if (!json) return this
-    if (Schema.isSchemaInstance(json)) return json
+      if (Schema.isSchemaInstance(json)) return json
     each(reducePatches(json), (value, key) => {
       if (isFn(value) && !key.includes('x-')) return
       if (key === 'properties') {
@@ -514,62 +513,62 @@ export class Schema<
         this[key] = value
       }
     })
-    return this
+      return this
   }
 
-  toJSON = (
-    recursion = true
-  ): ISchema<
-    Decorator,
-    Component,
-    DecoratorProps,
-    ComponentProps,
-    Pattern,
-    Display,
-    Validator,
-    Message
+      toJSON = (
+      recursion = true
+      ): ISchema<
+        Decorator,
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
   > => {
-    const results = {}
+    const results = { }
     each(this, (value: any, key) => {
       if (
-        (isFn(value) && !key.includes('x-')) ||
-        key === 'parent' ||
-        key === 'root'
+      (isFn(value) && !key.includes('x-')) ||
+      key === 'parent' ||
+      key === 'root'
       )
-        return
+      return
       if (key === 'properties' || key === 'patternProperties') {
         if (!recursion) return
         results[key] = map(value, (item) => item?.toJSON?.())
       } else if (key === 'additionalProperties' || key === 'additionalItems') {
         if (!recursion) return
-        results[key] = value?.toJSON?.()
+      results[key] = value?.toJSON?.()
       } else if (key === 'items') {
         if (!recursion) return
-        if (Array.isArray(value)) {
-          results[key] = value.map((item) => item?.toJSON?.())
-        } else {
-          results[key] = value?.toJSON?.()
-        }
+      if (Array.isArray(value)) {
+        results[key] = value.map((item) => item?.toJSON?.())
+      } else {
+        results[key] = value?.toJSON?.()
+      }
       } else {
         results[key] = value
       }
     })
-    return results
+      return results
   }
 
-  toFieldProps = (
-    options?: ISchemaTransformerOptions
-  ): IFieldFactoryProps<any, any> => {
+      toFieldProps = (
+      options?: ISchemaTransformerOptions
+      ): IFieldFactoryProps<any, any> => {
     return transformFieldProps(this, options)
   }
 
-  static getOrderProperties = (
-    schema: ISchema = {},
-    propertiesName: keyof ISchema = 'properties'
+      static getOrderProperties = (
+      schema: ISchema = { },
+      propertiesName: keyof ISchema = 'properties'
   ) => {
     const orderProperties = []
-    const unorderProperties = []
-    for (const key in schema[propertiesName]) {
+      const unorderProperties = []
+      for (const key in schema[propertiesName]) {
       const item = schema[propertiesName][key]
       const index = item['x-index']
       if (!isNaN(index)) {
@@ -593,17 +592,17 @@ export class Schema<
     return instOf(value, Schema)
   }
 
-  static registerCompiler = registerCompiler
+      static registerCompiler = registerCompiler
 
-  static registerPatches = registerPatches
+      static registerPatches = registerPatches
 
-  static registerVoidComponents = registerVoidComponents
+      static registerVoidComponents = registerVoidComponents
 
-  static registerTypeDefaultComponents = registerTypeDefaultComponents
+      static registerTypeDefaultComponents = registerTypeDefaultComponents
 
-  static registerPolyfills = registerPolyfills
+      static registerPolyfills = registerPolyfills
 
-  static enablePolyfills = enablePolyfills
+      static enablePolyfills = enablePolyfills
 
-  static silent = silent
+      static silent = silent
 }

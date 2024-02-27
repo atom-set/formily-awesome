@@ -69,10 +69,11 @@ const effects4 = (form2) => {
 
 const form = createForm({
   validateFirst: true,
-  effects: effects1
+  // effects: effects1
 })
 
 form.setEffects((form2) => {
+  effects1(form2)
   effects2(form2)
   effects3(form2)
   effects4(form2)
@@ -146,6 +147,23 @@ const scope = {
 const schema = {
   type: 'object',
   properties: {
+    "source": {
+      "type": "string",
+      "x-component": "Input",
+      "x-reactions": {
+        "target": "target",
+        "effects": ["onFieldInputValueChange"],
+        "fulfill": {
+          "state": {
+            "visible": "{{$self.value === '123'}}" //任意层次属性都支持表达式
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "string",
+      "x-component": "Input"
+    },
     username: {
       type: 'string',
       title: '用户名',
