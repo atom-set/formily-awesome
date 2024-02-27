@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react'
-import { createForm } from '@formily/core'
+import { createForm, onFormMount, onFormInit } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import {
   Form,
@@ -23,6 +23,14 @@ import { UploadOutlined } from '@ant-design/icons'
 
 const form = createForm({
   validateFirst: true,
+  effects() {
+    onFormMount(() => {
+      console.log('表单已挂载')
+    })
+    onFormInit(() => {
+      console.log('表单已初始化')
+    })
+  }
 })
 
 const IDUpload = (props) => {
@@ -314,6 +322,22 @@ const PageDemo = () => {
             labelCol={5}
             wrapperCol={16}
             onAutoSubmit={console.log}
+            x-requestSource={[
+              {
+                key: "16gqb4pkmwj",
+                title: "数据源名称",
+                duplicateKey: "16gqb4pkmwj",
+                config: {
+                  name: "AAAA",
+                  path: "https://mock.com/api/xxxx",
+                  method: "POST",
+                  requestParam: [],
+                  requestBody: [],
+                  requestHeader: [],
+                },
+              },
+            ]}
+            onSubmit={() => console.log(form.values)}
           >
             <SchemaField schema={schema} scope={scope} />
             <FormButtonGroup.FormItem>
