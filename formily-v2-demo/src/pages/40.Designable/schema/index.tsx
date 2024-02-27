@@ -23,9 +23,9 @@ import { UploadOutlined } from '@ant-design/icons'
 
 const form = createForm({
   validateFirst: true,
-  effects: () => {
+  effects: (form2) => {
     onFormMount(() => {
-      form.setInitialValues({
+      form2.setInitialValues({
         username: 'Aston Martin',
         firstName: 'Aston',
         lastName: 'Martin',
