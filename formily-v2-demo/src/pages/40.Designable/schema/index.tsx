@@ -1,7 +1,5 @@
-/* eslint-disable no-eval */
-// @ts-nocheck
-import React, { useState, useEffect } from 'react'
-import { createForm, onFormMount, onFormInit, onFieldReact, onFieldValueChange } from '@formily/core'
+import React, { useState, useEffect, useMemo } from 'react'
+import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import {
   Form,
@@ -22,28 +20,10 @@ import { action } from '@formily/reactive'
 import { Card, Button, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
-const a1 = () => {
-  onFormInit((form) => {
-    console.log('表单已加载1', form)
-  })
-}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { onFormMount, onFormInit, onFieldValueChange } = await import(`@formily/core`);
 
-const a3 = {
-  'onFormMount': "(form2) => {\n console.log('表单已加载3', form2) \n}"
-}
-
-const form = createForm({
-  validateFirst: true,
-  effects(form2) {
-    a1()
-    // onFormMount((form2) => {
-    //   eval("(" + a3['onFormMount'] + ")")(form2)
-    // })
-  }
-})
-
-
-const IDUpload = (props) => {
+const IDUpload = (props: any) => {
   return (
     <Upload
       {...props}
@@ -52,7 +32,7 @@ const IDUpload = (props) => {
         authorization: 'authorization-text',
       }}
     >
-      <Button icon={<UploadOutlined />}>上传复印件</Button>
+      <Button icon={<UploadOutlined rev={undefined} />}>上传复印件</Button>
     </Upload>
   )
 }
@@ -72,18 +52,20 @@ const SchemaField = createSchemaField({
   },
 })
 
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const scope = {
-  fetchAddress: (field) => {
+  fetchAddress: (field: any) => {
     const transform = (data = {}) => {
-      return Object.entries(data).reduce((buf, [key, value]) => {
+      return Object.entries(data).reduce((buf: any, [key, value]: any) => {
         if (typeof value === 'string')
           return buf.concat({
             label: value,
             value: key,
           })
         const { name, code, cities, districts } = value
-        const _cities = transform(cities)
-        const _districts = transform(districts)
+        const _cities: any = transform(cities)
+        const _districts: any = transform(districts)
         return buf.concat({
           label: name,
           value: code,
@@ -100,7 +82,7 @@ const scope = {
     fetch('//unpkg.com/china-location/dist/location.json')
       .then((res) => res.json())
       .then(
-        action.bound((data) => {
+        (action as any).bound((data: any) => {
           field.dataSource = transform(data)
           field.loading = false
         })
@@ -108,33 +90,28 @@ const scope = {
   },
 }
 
-form.setEffects(() => {
-  onFormMount((form2) => {
-    eval("(" + a3['onFormMount'] + ")")(form2)
+const a1 = () => {
+  onFormInit((form) => {
+    console.log('表单已加载1', form)
   })
-})
+}
+
+const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
+
+const b1 = () => {
+  onFieldValueChange('username', (field) => {
+    console.log('field1:', field)
+  })
+}
+
+const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
+
 
 const schema = {
   type: 'object',
   properties: {
-    "source": {
-      "type": "string",
-      "x-component": "Input",
-      "x-reactions": {
-        "target": "target",
-        "effects": ["onFieldInputValueChange"],
-        "fulfill": {
-          "state": {
-            "visible": "{{$self.value === '123'}}" //任意层次属性都支持表达式
-          }
-        }
-      }
-    },
-    "target": {
-      "type": "string",
-      "x-component": "Input"
-    },
     username: {
+      name: "username",
       type: 'string',
       title: '用户名',
       required: true,
@@ -152,6 +129,7 @@ const schema = {
       'x-component': 'FormGrid',
       properties: {
         firstName: {
+          name: "firstName",
           type: 'string',
           required: true,
           'x-decorator': 'FormItem',
@@ -316,6 +294,24 @@ const PageDemo = () => {
     console.log(form)
     setLoading(false)
   }, []);
+
+  const form = useMemo(() => createForm({
+    effects() {
+      a1()
+      // eslint-disable-next-line no-eval
+      // eval("(" + a2 + ")")()
+      b1()
+    },
+  }), [])
+
+
+  form.addEffects(form.id, () => {
+    // eslint-disable-next-line no-eval
+    eval("(" + a2 + ")")()
+    // eslint-disable-next-line no-eval
+    eval("(" + b2 + ")")()
+  })
+
   return (
     <div
       style={{
@@ -329,8 +325,6 @@ const PageDemo = () => {
         <Spin spinning={loading}>
           <Form
             form={form}
-            Effect
-            title="form"
             labelCol={5}
             wrapperCol={16}
             onAutoSubmit={console.log}
@@ -349,9 +343,9 @@ const PageDemo = () => {
                 },
               },
             ]}
-            onSubmit={() => console.log(form.values)}
           >
-            <SchemaField schema={schema} scope={scope} />
+            <SchemaField schema={schema} scope={scope}>
+            </SchemaField>
             <FormButtonGroup.FormItem>
               <Submit block size="large">
                 提交
