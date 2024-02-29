@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/react'
@@ -20,8 +21,55 @@ import { action } from '@formily/reactive'
 import { Card, Button, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { onFieldInit, onFieldInputValueChange, onFormMount, onFormInit, onFieldValueChange } = await import(`@formily/core`);
+const {
+  onFormInit,
+  onFormMount,
+  onFormUnmount,
+  onFormValuesChange,
+  onFormInitialValuesChange,
+  onFormInputChange,
+  onFormSubmit,
+  onFormReset,
+  onFormSubmitStart,
+  onFormSubmitEnd,
+  onFormSubmitSuccess,
+  onFormSubmitFailed,
+  onFormSubmitValidateStart,
+  onFormSubmitValidateSuccess,
+  onFormSubmitValidateFailed,
+  onFormSubmitValidateEnd,
+  onFormValidateStart,
+  onFormValidateSuccess,
+  onFormValidateFailed,
+  onFormValidateEnd,
+  onFormGraphChange,
+  onFormLoading,
+  onFormReact,
+  onFieldMount,
+  onFieldUnmount,
+  onFieldValueChange,
+  onFieldInitialValueChange,
+  onFieldInputValueChange,
+  onFieldValidateStart,
+  onFieldValidateEnd,
+  onFieldValidating,
+  onFieldValidateFailed,
+  onFieldValidateSuccess,
+  onFieldSubmit,
+  onFieldSubmitStart,
+  onFieldSubmitEnd,
+  onFieldSubmitValidateStart,
+  onFieldSubmitValidateEnd,
+  onFieldSubmitSuccess,
+  onFieldSubmitFailed,
+  onFieldSubmitValidateSuccess,
+  onFieldSubmitValidateFailed,
+  onFieldReset,
+  onFieldLoading,
+  onFieldInit,
+  onFieldReact,
+  onFieldChange,
+} = await import(`@formily/core`);
 
 const IDUpload = (props: any) => {
   return (
