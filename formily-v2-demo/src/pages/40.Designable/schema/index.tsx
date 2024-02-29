@@ -21,7 +21,7 @@ import { Card, Button, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { onFormMount, onFormInit, onFieldValueChange } = await import(`@formily/core`);
+const { onFieldInit, onFieldInputValueChange, onFormMount, onFormInit, onFieldValueChange } = await import(`@formily/core`);
 
 const IDUpload = (props: any) => {
   return (
@@ -281,16 +281,22 @@ const PageDemo = () => {
 
   // const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
   // const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
+  // const effect = [
+  //   "() => {\n    onFormInit((form2) => {\n      console.log('表单已初始化', form2)\n    })\n  }",
+  //   "() => {\n    onFormMount((form2) => {\n      console.log('表单已加载', form2)\n    })\n  }",
+  //   "() => {\n    onFieldValueChange('username', (field) => {\n      console.log('onFieldValueChange field:', field)\n    });\n  }"
+  // ]
+
   const effect = [
-    "() => {\n    onFormInit((form2) => {\n      console.log('表单已初始化', form2)\n    })\n  }",
-    "() => {\n    onFormMount((form2) => {\n      console.log('表单已加载', form2)\n    })\n  }",
-    "() => {\n    onFieldValueChange('username', (field) => {\n      console.log('onFieldValueChange field:', field)\n    });\n  }"
+    "onFormMount((form) => {\n  console.log('onFormMount')\n})",
+    "onFieldInit('username', (field) => {\n\n console.log('onFieldInit:', field)\n  \n})",
+    "onFieldInputValueChange('username', (field) => {\n  console.log('target 值变化：' + field.value)\n})\n\nonFormMount(() => {\n  console.log('onFormMount')\n})\n"
   ]
 
   form.addEffects(form.id, () => {
     effect.forEach((item) => {
       // eslint-disable-next-line no-eval
-      eval("(" + item + ")")()
+      eval("(() => {" + item + " })")()
     })
   })
   return (
