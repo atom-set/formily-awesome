@@ -90,23 +90,6 @@ const scope = {
   },
 }
 
-const a1 = () => {
-  onFormInit((form) => {
-    console.log('表单已加载1', form)
-  })
-}
-
-const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
-
-const b1 = () => {
-  onFieldValueChange('username', (field) => {
-    console.log('field1:', field)
-  })
-}
-
-const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
-
-
 const schema = {
   type: 'object',
   properties: {
@@ -296,22 +279,25 @@ const PageDemo = () => {
   }, []);
 
   const form = useMemo(() => createForm({
-    effects() {
-      a1()
-      // eslint-disable-next-line no-eval
-      // eval("(" + a2 + ")")()
-      b1()
-    },
+    effects() { },
   }), [])
 
 
-  form.addEffects(form.id, () => {
-    // eslint-disable-next-line no-eval
-    eval("(" + a2 + ")")()
-    // eslint-disable-next-line no-eval
-    eval("(" + b2 + ")")()
-  })
+  // const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
+  // const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
 
+  const effect = [
+    "() => {\n    onFormInit((form2) => {\n      console.log('表单已初始化', form2)\n    })\n  }",
+    "() => {\n    onFormMount((form2) => {\n      console.log('表单已加载', form2)\n    })\n  }",
+    "() => {\n    onFieldValueChange('username', (field) => {\n      console.log('onFieldValueChange field:', field)\n    });\n  }"
+
+  ]
+  form.addEffects(form.id, () => {
+    effect.forEach((item) => {
+      // eslint-disable-next-line no-eval
+      eval("(" + item + ")")()
+    })
+  })
   return (
     <div
       style={{
