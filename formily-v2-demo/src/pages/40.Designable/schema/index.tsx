@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 // @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { createForm, onFormMount, onFormInit, onFieldReact, onFieldValueChange } from '@formily/core'
@@ -21,63 +22,26 @@ import { action } from '@formily/reactive'
 import { Card, Button, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
-const effects1 = (form2) => {
-  onFormInit(() => {
-    console.log('表单已初始化')
+const a1 = () => {
+  onFormInit((form) => {
+    console.log('表单已加载1', form)
   })
 }
 
-const effects2 = (form2) => {
-  onFormMount(() => {
-    console.log('表单已加载')
-    form2.setInitialValues({
-      username: 'Aston Martin',
-      firstName: 'Aston',
-      lastName: 'Martin',
-      email: 'aston_martin@aston.com',
-      gender: 1,
-      birthday: '1836-01-03',
-      address: ['110000', '110000', '110101'],
-      idCard: [
-        {
-          name: 'this is image',
-          thumbUrl:
-            'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-          uid: 'rc-upload-1615825692847-2',
-          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
-      ],
-      contacts: [
-        { name: '张三', phone: '13245633378', email: 'zhangsan@gmail.com' },
-        { name: '李四', phone: '16873452678', email: 'lisi@gmail.com' },
-      ],
-    })
-  })
-}
-
-const effects3 = (form2) => {
-  onFieldReact('name', (field) => {
-    console.log('onFieldReact field:', field)
-  });
-}
-
-const effects4 = (form2) => {
-  onFieldValueChange('username', (field) => {
-    console.log('onFieldValueChange field:', field)
-  });
+const a3 = {
+  'onFormMount': "(form2) => {\n console.log('表单已加载3', form2) \n}"
 }
 
 const form = createForm({
   validateFirst: true,
-  // effects: effects1
+  effects(form2) {
+    a1()
+    // onFormMount((form2) => {
+    //   eval("(" + a3['onFormMount'] + ")")(form2)
+    // })
+  }
 })
 
-form.setEffects((form2) => {
-  effects1(form2)
-  effects2(form2)
-  effects3(form2)
-  effects4(form2)
-})
 
 const IDUpload = (props) => {
   return (
@@ -143,6 +107,12 @@ const scope = {
       )
   },
 }
+
+form.setEffects(() => {
+  onFormMount((form2) => {
+    eval("(" + a3['onFormMount'] + ")")(form2)
+  })
+})
 
 const schema = {
   type: 'object',
@@ -344,7 +314,6 @@ const PageDemo = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     console.log(form)
-
     setLoading(false)
   }, []);
   return (
@@ -356,11 +325,12 @@ const PageDemo = () => {
         padding: '40px 0',
       }}
     >
-      <Card title="编辑用户" style={{ width: 620 }}>
+      <Card title="编辑用户22" style={{ width: 620 }}>
         <Spin spinning={loading}>
           <Form
             form={form}
             Effect
+            title="form"
             labelCol={5}
             wrapperCol={16}
             onAutoSubmit={console.log}
