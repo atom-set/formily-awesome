@@ -77,16 +77,13 @@ const scope = {
         })
       }, [])
     }
-
     field.loading = true
     fetch('//unpkg.com/china-location/dist/location.json')
       .then((res) => res.json())
-      .then(
-        (action as any).bound((data: any) => {
-          field.dataSource = transform(data)
-          field.loading = false
-        })
-      )
+      .then((data: any) => {
+        field.dataSource = transform(data)
+        field.loading = false
+      })
   },
 }
 
@@ -282,16 +279,14 @@ const PageDemo = () => {
     effects() { },
   }), [])
 
-
   // const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
   // const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
-
   const effect = [
     "() => {\n    onFormInit((form2) => {\n      console.log('表单已初始化', form2)\n    })\n  }",
     "() => {\n    onFormMount((form2) => {\n      console.log('表单已加载', form2)\n    })\n  }",
     "() => {\n    onFieldValueChange('username', (field) => {\n      console.log('onFieldValueChange field:', field)\n    });\n  }"
-
   ]
+
   form.addEffects(form.id, () => {
     effect.forEach((item) => {
       // eslint-disable-next-line no-eval
