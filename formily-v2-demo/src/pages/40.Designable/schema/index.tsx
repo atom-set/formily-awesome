@@ -1,29 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react'
-import { createForm, onFormMount, onFormInit, onFieldInit, onFieldInputValueChange } from '@formily/core'
-import { createSchemaField } from '@formily/react'
 import {
-  Form,
-  FormItem,
-  FormLayout,
-  Input,
-  Select,
-  Cascader,
-  DatePicker,
-  Submit,
-  FormGrid,
-  Upload,
-  ArrayItems,
-  Editable,
-  FormButtonGroup,
-} from '@formily/antd'
-import { action } from '@formily/reactive'
-import { Card, Button, Spin } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
-
-const {
-  // onFormInit,
-  // onFormMount,
+  createForm,
+  onFormInit,
+  onFormMount,
   onFormUnmount,
   onFormValuesChange,
   onFormInitialValuesChange,
@@ -45,12 +25,12 @@ const {
   onFormGraphChange,
   onFormLoading,
   onFormReact,
-  // onFieldInit,
+  onFieldInit,
   onFieldMount,
   onFieldUnmount,
   onFieldValueChange,
   onFieldInitialValueChange,
-  // onFieldInputValueChange,
+  onFieldInputValueChange,
   onFieldValidateStart,
   onFieldValidateEnd,
   onFieldValidating,
@@ -69,7 +49,26 @@ const {
   onFieldLoading,
   onFieldReact,
   onFieldChange,
-} = await import(`@formily/core`);
+} from '@formily/core'
+import { createSchemaField } from '@formily/react'
+import {
+  Form,
+  FormItem,
+  FormLayout,
+  Input,
+  Select,
+  Cascader,
+  DatePicker,
+  Submit,
+  FormGrid,
+  Upload,
+  ArrayItems,
+  Editable,
+  FormButtonGroup,
+} from '@formily/antd'
+import { action } from '@formily/reactive'
+import { Card, Button, Spin } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 
 const IDUpload = (props: any) => {
   return (
@@ -316,6 +315,56 @@ const schema = {
   },
 }
 
+const effectHooks = {
+  onFormInit,
+  onFormMount,
+  onFormUnmount,
+  onFormValuesChange,
+  onFormInitialValuesChange,
+  onFormInputChange,
+  onFormSubmit,
+  onFormReset,
+  onFormSubmitStart,
+  onFormSubmitEnd,
+  onFormSubmitSuccess,
+  onFormSubmitFailed,
+  onFormSubmitValidateStart,
+  onFormSubmitValidateSuccess,
+  onFormSubmitValidateFailed,
+  onFormSubmitValidateEnd,
+  onFormValidateStart,
+  onFormValidateSuccess,
+  onFormValidateFailed,
+  onFormValidateEnd,
+  onFormGraphChange,
+  onFormLoading,
+  onFormReact,
+  onFieldInit,
+  onFieldMount,
+  onFieldUnmount,
+  onFieldValueChange,
+  onFieldInitialValueChange,
+  onFieldInputValueChange,
+  onFieldValidateStart,
+  onFieldValidateEnd,
+  onFieldValidating,
+  onFieldValidateFailed,
+  onFieldValidateSuccess,
+  onFieldSubmit,
+  onFieldSubmitStart,
+  onFieldSubmitEnd,
+  onFieldSubmitValidateStart,
+  onFieldSubmitValidateEnd,
+  onFieldSubmitSuccess,
+  onFieldSubmitFailed,
+  onFieldSubmitValidateSuccess,
+  onFieldSubmitValidateFailed,
+  onFieldReset,
+  onFieldLoading,
+  onFieldReact,
+  onFieldChange,
+}
+
 const PageDemo = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -335,7 +384,7 @@ const PageDemo = () => {
   ]
 
   form.addEffects(form.id, () => {
-    const scope = { onFormInit, onFormMount, onFieldInit, onFieldInputValueChange };
+    const scope = effectHooks;
     effect.forEach((item) => {
       let expression = `() => {\n ${item} \n}`
       // eslint-disable-next-line no-new-func
