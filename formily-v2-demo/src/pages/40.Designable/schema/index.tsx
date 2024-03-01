@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useMemo } from 'react'
-import { createForm } from '@formily/core'
+import { createForm, onFormMount, onFormInit, onFieldInit, onFieldInputValueChange } from '@formily/core'
 import { createSchemaField } from '@formily/react'
 import {
   Form,
@@ -22,8 +22,8 @@ import { Card, Button, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
 const {
-  onFormInit,
-  onFormMount,
+  // onFormInit,
+  // onFormMount,
   onFormUnmount,
   onFormValuesChange,
   onFormInitialValuesChange,
@@ -45,11 +45,12 @@ const {
   onFormGraphChange,
   onFormLoading,
   onFormReact,
+  // onFieldInit,
   onFieldMount,
   onFieldUnmount,
   onFieldValueChange,
   onFieldInitialValueChange,
-  onFieldInputValueChange,
+  // onFieldInputValueChange,
   onFieldValidateStart,
   onFieldValidateEnd,
   onFieldValidating,
@@ -66,7 +67,6 @@ const {
   onFieldSubmitValidateFailed,
   onFieldReset,
   onFieldLoading,
-  onFieldInit,
   onFieldReact,
   onFieldChange,
 } = await import(`@formily/core`);
@@ -327,13 +327,6 @@ const PageDemo = () => {
     effects() { },
   }), [])
 
-  // const a2 = `() => {\n onFormMount((form) => { \n console.log('表单已加载2', form) \n }) \n}`
-  // const b2 = `() => { \n onFieldValueChange('username', (field) => { \n console.log('field2:', field) \n }) \n}`
-  // const effect = [
-  //   "() => {\n    onFormInit((form2) => {\n      console.log('表单已初始化', form2)\n    })\n  }",
-  //   "() => {\n    onFormMount((form2) => {\n      console.log('表单已加载', form2)\n    })\n  }",
-  //   "() => {\n    onFieldValueChange('username', (field) => {\n      console.log('onFieldValueChange field:', field)\n    });\n  }"
-  // ]
 
   const effect = [
     "onFormMount((form) => {\n  console.log('onFormMount')\n})",
@@ -342,9 +335,11 @@ const PageDemo = () => {
   ]
 
   form.addEffects(form.id, () => {
+    const scope = { onFormInit, onFormMount, onFieldInit, onFieldInputValueChange };
     effect.forEach((item) => {
-      // eslint-disable-next-line no-eval
-      eval("(() => {" + item + " })")()
+      let expression = `() => {\n ${item} \n}`
+      // eslint-disable-next-line no-new-func
+      new Function('$root', `with($root) { return ${expression}; }`)(scope)()
     })
   })
   return (
