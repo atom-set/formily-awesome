@@ -99,41 +99,6 @@ const SchemaField = createSchemaField({
   },
 })
 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const scope = {
-  fetchAddress: (field: any) => {
-    const transform = (data = {}) => {
-      return Object.entries(data).reduce((buf: any, [key, value]: any) => {
-        if (typeof value === 'string')
-          return buf.concat({
-            label: value,
-            value: key,
-          })
-        const { name, code, cities, districts } = value
-        const _cities: any = transform(cities)
-        const _districts: any = transform(districts)
-        return buf.concat({
-          label: name,
-          value: code,
-          children: _cities.length
-            ? _cities
-            : _districts.length
-              ? _districts
-              : undefined,
-        })
-      }, [])
-    }
-    field.loading = true
-    fetch('//unpkg.com/china-location/dist/location.json')
-      .then((res) => res.json())
-      .then((data: any) => {
-        field.dataSource = transform(data)
-        field.loading = false
-      })
-  },
-}
-
 const schema = {
   type: 'object',
   properties: {
@@ -365,6 +330,48 @@ const effectHooks = {
   onFieldChange,
 }
 
+const scope = {
+  fetchAddress: `(field) => {
+    field.loading = true
+    fetch('https://unpkg.com/china-location/dist/location.json', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        const transform = (data = {}) => {
+          return Object.entries(data).reduce((buf, [key, value]) => {
+            if (typeof value === 'string')
+              return buf.concat({
+                label: value,
+                value: key,
+              })
+            const { name, code, cities, districts } = value
+            const _cities = transform(cities)
+            const _districts = transform(districts)
+            return buf.concat({
+              label: name,
+              value: code,
+              children: _cities.length
+                ? _cities
+                : _districts.length
+                  ? _districts
+                  : undefined,
+            })
+          }, [])
+        }
+        return transform(response)
+      })
+      .then((data) => {
+        console.log('data:', data);
+        field.dataSource = data
+        field.loading = false
+      })
+  }`
+};
+
 const PageDemo = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -376,6 +383,17 @@ const PageDemo = () => {
     effects() { },
   }), [])
 
+  const formatScope = useMemo(() => {
+    let scopeRes: any = {};
+    for (let [key, value] of Object.entries(scope)) {
+      // console.log(key)
+      // console.log(value)
+      // eslint-disable-next-line no-new-func
+      scopeRes[key] = new Function(`{ return ${value}; } `)()
+    }
+    // console.log(scopeRes)
+    return scopeRes;
+  }, []);
 
   const effect = [
     "onFormMount((form) => {\n  console.log('onFormMount')\n})",
@@ -423,7 +441,7 @@ const PageDemo = () => {
               },
             ]}
           >
-            <SchemaField schema={schema} scope={scope}>
+            <SchemaField schema={schema} scope={formatScope}>
             </SchemaField>
             <FormButtonGroup.FormItem>
               <Submit block size="large">
