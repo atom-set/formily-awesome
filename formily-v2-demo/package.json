@@ -8,13 +8,14 @@
     "@formily/antd": "^2.2.29",
     "@formily/core": "^2.2.29",
     "@formily/react": "^2.2.29",
+    "@formily/reactive-react": "^2.3.1",
     "@formily/semi": "^1.0.1-beta.15",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "13.0.0",
     "@testing-library/user-event": "13.2.1",
     "@types/jest": "27.0.1",
     "@types/node": "16.7.13",
-    "@types/react": "18.0.0",
+    "@types/react": "^18.2.73",
     "@types/react-dom": "18.0.0",
     "antd": "5.7.2",
     "lodash": "^4.17.21",
@@ -42,6 +43,9 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "resolutions": {
+    "@types/react": "17.0.44"
   },
   "browserslist": {
     "production": [
